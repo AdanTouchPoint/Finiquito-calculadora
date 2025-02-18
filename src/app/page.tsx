@@ -24,6 +24,10 @@ export default function Home() {
       const [vacationDebt, setVacationDebt] = useState(0);
       const [aguinaldoDays, setAguinaldoDays] = useState(0);
       const [vacationsPolitics, setVacationsPolitics] = useState(0);
+      const [pendientBonus, setPendientBonus] = useState(0);
+      const [vacationsBonus, setVacationsBonus] = useState(0);
+      const [supBonusSelect,setSupBonusSelect] = useState(0);
+      const [bonusSelect,setBonusSelect] = useState('');
   return (
     <div className="w-full max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg border border-gray-200">
     <FirstStep
@@ -52,15 +56,9 @@ export default function Home() {
     <FourthStep
     aguinaldoDays={aguinaldoDays}
     setAguinaldoDays={setAguinaldoDays}
-    startDate={startDate}
-    setStartDate={setStartDate}
-    endDate={endDate}
-    setEndDate={setEndDate}
     aguinaldo={aguinaldo}
     setAguinaldo={setAguinaldo}
     dailyPay={dailyPay}
-    senority={senority}
-    setWorkedDays={setWorkedDays}
     workedDays={workedDays}
     />
     <FifthStep
@@ -71,6 +69,14 @@ export default function Home() {
     setVacationDebt={setVacationDebt}
     vacationsPolitics={vacationsPolitics}
     setVacationsPolitics={setVacationsPolitics}
+    pendientBonus={pendientBonus}
+    setPendientBonus={setPendientBonus}
+    vacationsBonus={vacationsBonus}
+    setVacationsBonus={setVacationsBonus}
+    supBonusSelect={supBonusSelect}
+    setSupBonusSelect={setSupBonusSelect}
+    bonusSelect={bonusSelect}
+    setBonusSelect={setBonusSelect}
     />
     <SixStep
     senority={senority}
@@ -78,18 +84,22 @@ export default function Home() {
     setSenorityBonus={setSenorityBonus}
     />
     <SevenStep
-    dailySalary={dailyPay}
+    dailyPay={dailyPay}
     senority={senority}
     aguinaldoDays={aguinaldoDays}
     debt={debt}
     vacationsDaysDebt={vacationsDaysDebt}
     vacationDebt={vacationDebt}
-    setVacationDebt={setVacationDebt}
     totalDebt={totalDebt}
     aguinaldo={aguinaldo}
     vacationsPolitics={vacationsPolitics}
     senorityBonus={senorityBonus}
+    pendientBonus={pendientBonus}
+    vacationsBonus={vacationsBonus}
+    supBonusSelect={supBonusSelect}
+    bonusSelect={bonusSelect}
     />
     </div>
   );
 }
+

@@ -1,20 +1,29 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import  {calcularAntiguedad}  from "../lib/utilities";
-export default function FirstStep({ senority, setSenority,workedDays,setWorkedDays,startDate,endDate,setStartDate,setEndDate }) {
+interface FirstStepProps {
+  senority: number;
+  setSenority: React.Dispatch<React.SetStateAction<number>>;
+  workedDays: number;
+  setWorkedDays: React.Dispatch<React.SetStateAction<number>>;
+  startDate: string;
+  endDate: string;
+  setStartDate: React.Dispatch<React.SetStateAction<string>>;
+  setEndDate: React.Dispatch<React.SetStateAction<string>>;
+}
+export default function FirstStep({ senority, setSenority,setWorkedDays,startDate,endDate,setStartDate,setEndDate }: FirstStepProps) {
   // Obtener los valores de las fechas desde los inputs
- 
-  const changeStartDate = (event) => {
+  const changeStartDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setStartDate(event.target.value);
   };
-  const changeEndDate = (event) => {
+  const changeEndDate = (event: React.ChangeEvent<HTMLInputElement> ) => {
     setEndDate(event.target.value);
   }
   useEffect(() => {
+    if(!startDate || !endDate) return
     setSenority(calcularAntiguedad(startDate, endDate,365.25))
-    setWorkedDays(calcularAntiguedad(startDate, endDate, 1)  )   
+    setWorkedDays(calcularAntiguedad(startDate, endDate, 1))   
   }, [startDate, endDate]);
-
   // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
   return (
     <div >

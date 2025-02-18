@@ -2,10 +2,18 @@
 "use client"
 import React, {useState, useEffect} from 'react';
 import { calcularProporcionAguinaldo } from '../lib/utilities';
-export default function FourthStep({ aguinaldoDays,setAguinaldoDays,workedDays,dailyPay, aguinaldo,setAguinaldo,}) {
+interface FourthStepProps {
+    aguinaldoDays: number;
+    setAguinaldoDays: React.Dispatch<React.SetStateAction<number>>;
+    workedDays: number;
+    dailyPay: number;
+    aguinaldo: number;
+    setAguinaldo: React.Dispatch<React.SetStateAction<number>>;
+}
+export default function FourthStep({ aguinaldoDays,setAguinaldoDays,workedDays,dailyPay, aguinaldo,setAguinaldo,}: FourthStepProps) {
    
     const [disableInput, setDisableInput] = useState('');
-    const onChange = (e) => { 
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
         setDisableInput(e.target.value)
         e.target.value === "ley" ? setAguinaldoDays(15 ) : setAguinaldoDays(15 )
         return
@@ -50,7 +58,7 @@ export default function FourthStep({ aguinaldoDays,setAguinaldoDays,workedDays,d
 
         {/* Resultado */}
         <div className="mt-2 p-3 bg-gray-100 text-gray-800 rounded-lg text-center font-semibold">
-          Proporción de aguinaldo: <span className="text-green-600">{aguinaldo?.toFixed(2)}</span>
+          Proporción de aguinaldo: <span className="text-green-600">{aguinaldo > 0 ? aguinaldo.toFixed(2) : 0} </span>
         </div>
       </div>
     )

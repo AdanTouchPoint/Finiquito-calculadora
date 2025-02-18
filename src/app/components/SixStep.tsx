@@ -1,8 +1,13 @@
 
-import React, { useState, useEffect } from "react";
-export default function SixStep({senority, dailyPay,setSenorityBonus}) {
+import React, { useEffect } from "react";
+interface SixStepProps {
+    senority: number;
+    dailyPay: number;
+    setSenorityBonus: React.Dispatch<React.SetStateAction<number>>;
+}
+export default function SixStep({senority, dailyPay,setSenorityBonus}: SixStepProps) {
     
-    const receivesSeniorityBonus = (senority,dailyPay,)=>{
+    const receivesSeniorityBonus = (senority: number,dailyPay: number)=>{
         if(senority > 15){
             const minimumSalary = 248.93 * 2
             return dailyPay > minimumSalary ? setSenorityBonus(minimumSalary) : setSenorityBonus(dailyPay*12*senority)
@@ -22,4 +27,4 @@ export default function SixStep({senority, dailyPay,setSenorityBonus}) {
         </span> 
       </div>
     )
-    }
+}

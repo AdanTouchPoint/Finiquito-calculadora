@@ -1,17 +1,33 @@
 "use client"
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import {calcularProporcionVacaciones} from "../lib/utilities";
 
-export default function FifthStep({vacationsPolitics,setVacationsPolitics,senority,dailyPay,setVacationsDaysDebt,setVacationDebt,vacationDebt,vacationsDaysDebt}) {
+interface FifthStepProps {
+    bonusSelect: string;
+    setBonusSelect: React.Dispatch<React.SetStateAction<string>>;
+    supBonusSelect: number;
+    setSupBonusSelect: React.Dispatch<React.SetStateAction<number>>;
+    vacationsBonus: number;
+    setVacationsBonus: React.Dispatch<React.SetStateAction<number>>;
+    vacationsPolitics: number;
+    setVacationsPolitics: React.Dispatch<React.SetStateAction<number>>;
+    senority: number;
+    dailyPay: number;
+    setVacationsDaysDebt: React.Dispatch<React.SetStateAction<number>>;
+    setVacationDebt: React.Dispatch<React.SetStateAction<number>>;
+    vacationDebt: number;
+    pendientBonus: number;
+    setPendientBonus: React.Dispatch<React.SetStateAction<number>>;
+}
+export default function FifthStep({bonusSelect,setBonusSelect,supBonusSelect,setSupBonusSelect,vacationsBonus,setVacationsBonus,vacationsPolitics,setVacationsPolitics,senority,dailyPay,setVacationsDaysDebt,setVacationDebt,vacationDebt,pendientBonus,setPendientBonus}: FifthStepProps) {
 
 const [disable,setDisable] = useState(true);
-const [vacationsBonus, setVacationsBonus] = useState(0);
 const [disableBonus,setDisableBonus] = useState(true);
-const [pendientBonus,setPendientBonus] = useState(0);
-const [supBonusSelect,setSupBonusSelect] = useState(0);
-const [bonusSelect,setBonusSelect] = useState('');
 
-const lawPolicy = (e, senority) => {
+
+
+const [bonusVacation,setBonusVacation] = useState('');
+const lawPolicy = (e, senority: number): void => {
     if (!senority || senority < 0) return; // Evita valores no válidos
     if(e.target.value === 'sup'){
         setDisable(false)
@@ -28,7 +44,7 @@ const lawPolicy = (e, senority) => {
     }
 };
 
-const superiorPolicy = (e, senority) => {
+const superiorPolicy = (e: React.ChangeEvent<HTMLInputElement>, senority: number) : void => {
     if (!senority || senority < 0) return; // Evita valores no válidos
 
     const policyValue = parseFloat(e.target.value); // Asegura que sea número
@@ -41,7 +57,7 @@ const superiorPolicy = (e, senority) => {
         setVacationsPolitics(roundedSenority);
     }
 };
-const getLawVacationsBonus = (e,vacationsPolitics) => {
+const getLawVacationsBonus = (e: React.ChangeEvent<HTMLInputElement>,vacationsPolitics: number): void => {
     if( !vacationsPolitics || vacationsPolitics < 0) return;
     setBonusSelect(e.target.value);
     if(e.target.value === 'sup'){
@@ -53,7 +69,7 @@ const getLawVacationsBonus = (e,vacationsPolitics) => {
         setVacationsBonus(vacationsPolitics * 0.25);
     }
 }
-const getSupVacationsBonus = (e,vacationsPolitics) => {
+const getSupVacationsBonus = (e: React.ChangeEvent<HTMLInputElement>,vacationsPolitics: number): void => {
     if( !vacationsPolitics || vacationsPolitics < 0) return;
     const bonus = parseFloat(e.target.value);
     
@@ -63,21 +79,30 @@ const getSupVacationsBonus = (e,vacationsPolitics) => {
         setVacationsBonus(vacationsPolitics * bonus / 100);
     }
 }
-const getVacationDebt = (e,dailyPay) => {
+const getVacationDebt = (e: React.ChangeEvent<HTMLInputElement>,dailyPay: number): void=> {
     const debt = parseFloat(e.target.value);
     if(debt > 0) {
+        console.log(debt)
         setVacationsDaysDebt(debt);
         setVacationDebt(debt*dailyPay);
     }
 }
-const bonusPendient = (e, vacationDebt,supBonusSelect) => {
-    if(e.target.value === 'days') {
-       return bonusSelect === 'ley' ? setPendientBonus(vacationDebt * 0.25) : setPendientBonus(vacationDebt * supBonusSelect / 100);
-    }
-   
-    return setPendientBonus(vacationDebt * 0) 
-     
+useEffect(() => { 
+if(bonusVacation === " ") {
+return
 }
+if (bonusVacation !== 'days') {
+    console.log(supBonusSelect, "aniv")
+    return setPendientBonus(vacationDebt * 0)
+}
+if(bonusSelect === 'ley') {
+    console.log(bonusVacation,vacationDebt)
+    return setPendientBonus(vacationDebt * 0.25)}
+    else {
+        return setPendientBonus(vacationDebt * supBonusSelect / 100)
+    }
+
+}, [bonusVacation,vacationDebt,bonusSelect,supBonusSelect]);
     return(
 <div className="flex flex-col gap-4">
         {/* Política de Vacaciones */}
@@ -110,7 +135,6 @@ const bonusPendient = (e, vacationDebt,supBonusSelect) => {
         <div>
           <label className="font-semibold text-gray-700">Política de Prima Vacacional</label>
           <select
-
             onChange={(e) => getLawVacationsBonus(e,vacationsPolitics)}
             id="holidaysPay"
             className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
@@ -130,6 +154,7 @@ const bonusPendient = (e, vacationDebt,supBonusSelect) => {
             className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
             placeholder="Ingrese el porcentaje"
             disabled={disableBonus}
+            defaultValue={30}
           />
         </div>
 
@@ -139,13 +164,13 @@ const bonusPendient = (e, vacationDebt,supBonusSelect) => {
           <select
             id="holidaysPayWay"
             className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
-            onChange={(e) => bonusPendient(e,vacationDebt,supBonusSelect)}
+            onChange={(e) => setBonusVacation(e.target.value)}
           >
+            <option>Seleccione una opción</option>
             <option value="days">Por dias de vacaciones tomados</option>
             <option value="aniv">Al cuimplimiento del aniversario </option>
           </select>
         </div>
-
         {/* Vacaciones Adeudadas */}
         <div>
           <label className="font-semibold text-gray-700">¿Cuántos días de vacaciones de años anteriores se te adeudan?</label>

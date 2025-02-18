@@ -1,7 +1,7 @@
-export function calcularAntiguedad(startDate, endDate, lapse) {
+export function calcularAntiguedad(startDate:string, endDate: string, lapse: number): number {
     // Verificar que ambas fechas estén seleccionadas
     if (!startDate || !endDate) {
-      return; // Salir de la función si falta alguna fecha
+      return 0 ; // Salir de la función si falta alguna fecha
     }
     console.log(startDate, endDate)
     // Convertir las fechas de string a objetos Date
@@ -9,7 +9,7 @@ export function calcularAntiguedad(startDate, endDate, lapse) {
     const endDateObj = new Date(endDate);
 
     // Calcular la diferencia en milisegundos
-    const diferenciaMilisegundos = endDateObj - startDateObj;
+    const diferenciaMilisegundos: number = endDateObj - startDateObj;
   
     // Convertir la diferencia de milisegundos a años (aproximado, considerando 365.25 días por año para incluir años bisiestos)
    const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * lapse);
@@ -23,13 +23,13 @@ export function calcularAntiguedad(startDate, endDate, lapse) {
   return days
   }
 
-  export function calcularProporcionAguinaldo(workedDays, aguinaldoDays, dailyPay) {
+  export function calcularProporcionAguinaldo(workedDays :  number, aguinaldoDays: number, dailyPay: number): number {
 
    return (workedDays / 365) * aguinaldoDays * dailyPay;
   }
 
 
-  export function calcularProporcionVacaciones(senority) {
+  export function calcularProporcionVacaciones(senority: number) {
     //redondear hacia arriba senority
     const roundedSenority = Math.ceil(senority);
     console.log(roundedSenority)
@@ -58,6 +58,6 @@ export function calcularAntiguedad(startDate, endDate, lapse) {
       case 23:
       case 24:
       case 25: return 28;
-      default: return "Valor no definido";
+      default: return 0
   }
   }

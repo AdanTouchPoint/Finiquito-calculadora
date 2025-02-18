@@ -1,6 +1,18 @@
 'use client'
 import React, { useEffect } from 'react';
-export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,setDebt,totalDebt,setTotalDebt,period,setPeriod}) {
+interface ThirdStepProps {
+dailyPay: number;
+setDailyPay: React.Dispatch<React.SetStateAction<number>>;
+salary: number;
+setSalary: React.Dispatch<React.SetStateAction<number>>;
+debt: number;
+setDebt: React.Dispatch<React.SetStateAction<number>>;
+totalDebt: number;
+setTotalDebt: React.Dispatch<React.SetStateAction<number>>;
+period: number;
+setPeriod: React.Dispatch<React.SetStateAction<number>>;
+}
+export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,setDebt,totalDebt,setTotalDebt,period,setPeriod}: ThirdStepProps) {
 
     useEffect(() => {
         if(period === 0 || salary === 0 || debt === 0){
