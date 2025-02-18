@@ -27,7 +27,7 @@ const [disableBonus,setDisableBonus] = useState(true);
 
 
 const [bonusVacation,setBonusVacation] = useState('');
-const lawPolicy = (e, senority: number): void => {
+const lawPolicy = (e: React.ChangeEvent<HTMLSelectElement>, senority: number): void => {
     if (!senority || senority < 0) return; // Evita valores no válidos
     if(e.target.value === 'sup'){
         setDisable(false)
@@ -57,7 +57,7 @@ const superiorPolicy = (e: React.ChangeEvent<HTMLInputElement>, senority: number
         setVacationsPolitics(roundedSenority);
     }
 };
-const getLawVacationsBonus = (e: React.ChangeEvent<HTMLInputElement>,vacationsPolitics: number): void => {
+const getLawVacationsBonus = (e: React.ChangeEvent<HTMLSelectElement>,vacationsPolitics: number): void => {
     if( !vacationsPolitics || vacationsPolitics < 0) return;
     setBonusSelect(e.target.value);
     if(e.target.value === 'sup'){
