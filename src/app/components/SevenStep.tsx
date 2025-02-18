@@ -29,7 +29,7 @@ const [vacationsBonusTotal,setVacationsBonusTotal] = useState(0);
     useEffect( () => {
       setVacationsTotal(vacationsPolitics + vacationDebt)
       setVacationsBonusTotal(vacationsBonus + pendientBonus)
-     },[,vacationsPolitics,vacationsBonus,pendientBonus,vacationsDaysDebt])
+     },[,vacationsPolitics,vacationsBonus,pendientBonus,vacationsDaysDebt,vacationDebt])
 
     const calculateTotal = (totalDebt:number,aguinaldo: number,vacationsTotal: number,vacationsBonusTotal: number,senorityBonus: number ) => {
         return totalDebt + aguinaldo + vacationsTotal + vacationsBonusTotal + senorityBonus

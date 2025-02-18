@@ -20,7 +20,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
         }
     setDailyPay(salary/period);
     setTotalDebt(debt*dailyPay);
-    }, [salary,debt,period,dailyPay]);
+    }, [salary,debt,period,dailyPay,setDailyPay,setTotalDebt]);
     return(
 <div className="flex flex-col gap-4">
         {/* Salario */}

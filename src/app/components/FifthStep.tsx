@@ -102,7 +102,7 @@ if(bonusSelect === 'ley') {
         return setPendientBonus(vacationDebt * supBonusSelect / 100)
     }
 
-}, [bonusVacation,vacationDebt,bonusSelect,supBonusSelect]);
+}, [bonusVacation,vacationDebt,bonusSelect,supBonusSelect,setPendientBonus]);
     return(
 <div className="flex flex-col gap-4">
         {/* Política de Vacaciones */}

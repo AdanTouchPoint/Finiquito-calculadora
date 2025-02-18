@@ -23,7 +23,7 @@ export default function FirstStep({ senority, setSenority,setWorkedDays,startDat
     if(!startDate || !endDate) return
     setSenority(calcularAntiguedad(startDate, endDate,365.25))
     setWorkedDays(calcularAntiguedad(startDate, endDate, 1))   
-  }, [startDate, endDate]);
+  }, [startDate, endDate,setSenority,setWorkedDays]);
   // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
   return (
     <div >

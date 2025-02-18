@@ -12,15 +12,17 @@ interface FourthStepProps {
 }
 export default function FourthStep({ aguinaldoDays,setAguinaldoDays,workedDays,dailyPay, aguinaldo,setAguinaldo,}: FourthStepProps) {
    
-    const [disableInput, setDisableInput] = useState('');
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
-        setDisableInput(e.target.value)
-        e.target.value === "ley" ? setAguinaldoDays(15 ) : setAguinaldoDays(15 )
-        return
+    const [disableInput, setDisableInput] = useState<string>('');
+    const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => { 
+      const value = e.target.value
+        setDisableInput(value)
+      if(value === 'ley'){
+        setAguinaldoDays(15)
+      }
     }
     useEffect(() => {
         return setAguinaldo(calcularProporcionAguinaldo(workedDays, aguinaldoDays, dailyPay))
-    }, [workedDays,aguinaldoDays,dailyPay])
+    }, [workedDays,aguinaldoDays,dailyPay,aguinaldo,setAguinaldo]);
     return(
         <div className="flex flex-col gap-4">
         {/* Política de Aguinaldo */}
