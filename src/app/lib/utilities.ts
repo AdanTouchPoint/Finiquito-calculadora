@@ -3,13 +3,16 @@ export function calcularAntiguedad(startDate:string, endDate: string, lapse: num
     if (!startDate || !endDate) {
       return 0 ; // Salir de la función si falta alguna fecha
     }
-    console.log(startDate, endDate)
+
     // Convertir las fechas de string a objetos Date
     const startDateObj = new Date(startDate);
     const endDateObj = new Date(endDate);
-
+    // Validar que las fechas sean válidas
+    if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
+      return 0;
+    }
     // Calcular la diferencia en milisegundos
-    const diferenciaMilisegundos: number = endDateObj - startDateObj;
+    const diferenciaMilisegundos: number = endDateObj.getTime() - startDateObj.getTime();
   
     // Convertir la diferencia de milisegundos a años (aproximado, considerando 365.25 días por año para incluir años bisiestos)
    const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * lapse);
