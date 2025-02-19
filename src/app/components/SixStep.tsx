@@ -26,7 +26,7 @@ export default function SixStep({senority, dailyPay,setSenorityBonus}: SixStepPr
             </label>
             <input
             readOnly
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             value={senority > 15 ? "Sí" : "No"}
             />
       </div>

@@ -42,7 +42,7 @@ export default function FourthStep({
           <select
             onChange={onChange}
             id="Politic"
-            className=" w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"          >
+            className=" w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"          >
             <option>Selecciona una opcion</option>
             <option value="ley">De Acuerdo a Ley</option>
             <option value="sup">Superior</option>
@@ -56,7 +56,7 @@ export default function FourthStep({
           <input
             onChange={(e) => setAguinaldoDays(Number(e.target.value))}
             type="number"
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"            placeholder="Ingrese los días"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"            placeholder="Ingrese los días"
             defaultValue={15}
             min={15}
             disabled={disableInput !== "sup" ? true : false}
@@ -70,7 +70,7 @@ export default function FourthStep({
         <input
         readOnly
         value={workedDays + " días"}	
-        className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
       </div>
 
@@ -81,7 +81,7 @@ export default function FourthStep({
         </label>
         <input
         readOnly
-        className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         value={aguinaldo > 0 ? aguinaldo.toFixed(2) : 0}
         />
       </div>

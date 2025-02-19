@@ -150,7 +150,7 @@ export default function FifthStep({
           <select
             onChange={(e) => lawPolicy(e, senority)}
             id="holidays"
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           >
             <option>Selecciona una opción</option>
             <option value="ley">De Acuerdo a Ley</option>
@@ -166,7 +166,7 @@ export default function FifthStep({
           <input
             type="number"
             onChange={(e) => superiorPolicy(e, senority)}
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese los días"
             disabled={disable}
           />
@@ -179,7 +179,7 @@ export default function FifthStep({
           <select
             onChange={(e) => getLawVacationsBonus(e, vacationsPolitics)}
             id="holidaysPay"
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           >
             <option>Selecciones una opción</option>
             <option value="ley">De Acuerdo a Ley</option>
@@ -195,7 +195,7 @@ export default function FifthStep({
           <input
             type="number"
             onChange={(e) => getSupVacationsBonus(e, vacationsPolitics)}
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese el porcentaje"
             disabled={disableBonus}
             defaultValue={30}
@@ -210,7 +210,7 @@ export default function FifthStep({
         </label>
         <select
           id="holidaysPayWay"
-          className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white mb-3"
+          className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white mb-3 text-[#848484]"
           onChange={(e) => setBonusVacation(e.target.value)}
         >
           <option>Seleccione una opción</option>
@@ -227,7 +227,7 @@ export default function FifthStep({
           <input
             type="number"
             onChange={(e) => getVacationDebt(e, dailyPay)}
-            className="w-full border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese los días"
           />
         </div>
@@ -236,7 +236,7 @@ export default function FifthStep({
             Vacaciones proporcionales:
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mt-6 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="w-full border border-gray-300 rounded-lg p-2 mt-6 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationsPolitics?.toFixed(2)}/>
           
@@ -247,7 +247,7 @@ export default function FifthStep({
             Prima vacacional proporcional:{" "}
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationsBonus?.toFixed(2)}/>
         </div>
@@ -256,7 +256,7 @@ export default function FifthStep({
             Vacaciones pendientes de disfrutar:{" "}
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationDebt?.toFixed(2)}/>
         </div>
@@ -266,7 +266,7 @@ export default function FifthStep({
         Prima vacacional de vacaciones pendientes:{" "}
       </label>
       <input
-          className=" w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className=" w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={pendientBonus?.toFixed(2)}/>
     </div>

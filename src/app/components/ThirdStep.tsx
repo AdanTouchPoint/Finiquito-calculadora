@@ -31,7 +31,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
           <input
             type="number"
             onChange={(e) => setSalary(Number(e.target.value))}
-            className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese el salario"
           />
           </div>
@@ -41,7 +41,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
           <label className="block text-gray-700 font-semibold text-xs">Periodicidad</label>
           <select
             onChange={(e) => setPeriod(Number(e.target.value))}
-            className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-red-500">
+            className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-red-500 text-[#848484]">
             <option>Seleccione una opción</option>
             <option value="1">Diario</option>
             <option value="30">Mensual</option>
@@ -55,7 +55,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
           <input
             type="number"
             onChange={(e) => setDebt(Number(e.target.value))}
-            className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese los días adeudados"
           />
         </div>
@@ -67,7 +67,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
         <input
         readOnly
         value={dailyPay.toFixed(2)}
-        className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
         </div>
      <div>
@@ -77,7 +77,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
         <input
         readOnly
         value={totalDebt.toFixed(2)}
-        className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
      </div>
         </div>

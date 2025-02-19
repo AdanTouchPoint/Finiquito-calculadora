@@ -88,7 +88,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-right text-black font-semibold w-full border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={dailyPay.toFixed(2)}
+              value={'$ '+ dailyPay.toFixed(2)}
             />
             <label className="font-medium text-gray-700 text-xs">
               Total de años trabajados:
@@ -106,8 +106,8 @@ export default function SevenStep({
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={
                 calcularProporcionVacaciones(senority) > 0
-                  ? calcularProporcionVacaciones(senority)
-                  : 0
+                  ? "$" + calcularProporcionVacaciones(senority)
+                  : '$ ' + 0
               }
             />
             <label className="font-medium text-gray-700 text-xs">
@@ -122,7 +122,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={aguinaldoDays.toFixed(2)}
+              value={" $ " + aguinaldoDays.toFixed(2)}
             />
           </div>
           <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -151,10 +151,11 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={bonusVacationSenority.toFixed(2)}
+              value={"$ "+ bonusVacationSenority.toFixed(2)}
             />
           </div>
         </div>
+        <div className="p-4 rounded-lg">
         <div className="bg-white p-4 rounded-lg">
         <div className="text-center justify-between items-center">
               <h2 className="text-xs font-medium text-gray-500 mb-2">
@@ -169,27 +170,26 @@ export default function SevenStep({
                   senorityBonus
                 ).toFixed(2)}
               </div>
-            </div>
+        </div>
         <div className="mt-1 border-t border-gray-500 pt-4">
-
-          </div>
+        </div>
           {/* Desgloses adicionales */}
-          <div className="space-y-2">
+        <div className="space-y-2">
             <h3 className="font-bold text-black mb-4 text-xs">
               Desglose de pagos de finiquito
             </h3>
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-700 text-xs">Sueldo:</span>
-              <span className="text-black font-bold">{totalDebt?.toFixed(2)}</span>
+              <span className="text-black font-bold">{"$ " + totalDebt?.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-700 text-xs">Aguinaldo:</span>
-              <span className="text-black font-bold">{aguinaldo?.toFixed(2)}</span>
+              <span className="text-black font-bold">{"$ " + aguinaldo?.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-700 text-xs">Vacaciones: </span>
               <span className="text-black font-bold">
-                {vacationsTotal?.toFixed(2)}
+                {"$ " + vacationsTotal?.toFixed(2)}
               </span>
             </div>
             <div className="flex justify-between items-center">
@@ -197,7 +197,7 @@ export default function SevenStep({
                 Prima vacacional:{" "}
               </span>
               <span defaultValue={0} className="text-black font-bold">
-                {vacationsBonusTotal?.toFixed(2)}
+                {"$ " + vacationsBonusTotal?.toFixed(2)}
               </span>
             </div>
             <div className="flex justify-between items-center">
@@ -205,10 +205,11 @@ export default function SevenStep({
                 Prima de antigüedad:
               </span>
               <span defaultValue={0} className="text-black font-bold">
-                {senorityBonus.toFixed(2)}
+                {"$ " + senorityBonus.toFixed(2)}
               </span>
             </div>
-          </div>
+        </div>
+        </div>
           {/* Total de finiquito */}
         </div>
       </div>

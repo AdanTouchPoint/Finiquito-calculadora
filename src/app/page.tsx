@@ -29,7 +29,7 @@ export default function Home() {
       const [supBonusSelect,setSupBonusSelect] = useState(0);
       const [bonusSelect,setBonusSelect] = useState('');
   return (
-    <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
+    <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
    <FirstStep
     startDate={startDate}
     setStartDate={setStartDate}
