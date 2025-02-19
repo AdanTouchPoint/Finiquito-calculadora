@@ -19,11 +19,16 @@ export default function SixStep({senority, dailyPay,setSenorityBonus}: SixStepPr
         receivesSeniorityBonus(senority,dailyPay)
     }, [senority,dailyPay,setSenorityBonus]);
     return(
-        <div className="mt-4 p-3 bg-gray-100 text-gray-800 rounded-lg text-center font-semibold">
-        ¿Debe recibir prima de antigüedad?
-       <span className={`font-bold ${senority ? "text-green-600" : "text-red-600"}`}>
-          {senority > 15 ? "Sí" : "No"}
-        </span> 
+        <div >
+            <h2 className="text-red-600 text-lg font-semibold mb-3">Prima de antigüedad</h2>
+            <label className="font-semibold text-gray-700 mb-2 text-xs">
+            ¿Debe recibir prima de antigüedad?
+            </label>
+            <input
+            readOnly
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={senority > 15 ? "Sí" : "No"}
+            />
       </div>
     )
 }

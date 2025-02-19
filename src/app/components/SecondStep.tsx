@@ -1,16 +1,15 @@
 export default function SecondStep() {
 return(
-<div className="w-full flex flex-col gap-2">
-  <label className="font-medium text-gray-700">Razón de baja</label>
-  <label className="text-sm text-gray-500">Motivo de la separación</label>
-  <select
-    id="razon-baja"
-    className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
-  >
-    <option value="1">Separación voluntaria</option>
-    <option value="2">Término de contrato</option>
-    <option value="3">Otra que no es despido</option>
-  </select>
+<div className="mb-6">
+<h2 className="text-red-600 text-lg font-semibold mb-3">Razón de baja</h2>
+<div className="grid grid-cols-1 md:grid-cols-1 ">
+<label className="text-xs block text-gray-700 font-semibold">Motivo de la separación</label>
+<select className="w-full border rounded-lg p-2 text-gray-400 focus:ring-2 focus:ring-red-400 ">
+  <option>Separación Voluntaria</option>
+  <option>Despido Justificado</option>
+  <option>Despido Injustificado</option>
+</select>
+  </div>
 </div>
 )
 }
