@@ -73,7 +73,7 @@ export default function SevenStep({
     );
   };
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg">
+    <div className="max-w-4xl mx-auto p-6 mt-6">
       <h2 className="text-2xl font-semibold text-center text-black">
         Detalle de <span className="text-red-500 font-bold">Finiquito</span>
       </h2>
@@ -82,12 +82,12 @@ export default function SevenStep({
           {/* Desglose de pagos de finiquito */}
           <h2 className="text-black text-lg font-semibold mb-3">Prestaciones</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
-            <label className="font-medium text-gray-700 text-xs mb-2 text-xs text-justify">
+            <label className="font-medium text-gray-700 text-xs mb-2 text-justify">
               Salario diario:
             </label>
             <input
               readOnly
-              className="bg-gray-100 text-right text-black font-semibold w-full border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="bg-gray-100 text-right text-black font-semibold w-full border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={'$ '+ dailyPay.toFixed(2)}
             />
             <label className="font-medium text-gray-700 text-xs">
@@ -95,7 +95,7 @@ export default function SevenStep({
             </label>
             <input
               readOnly
-              className=" text-black font-semibold bg-gray-100 text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className=" text-black font-semibold bg-gray-100 text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={senority.toFixed(2)}
             />
             <label className="font-medium text-gray-700 text-xs">
@@ -103,7 +103,7 @@ export default function SevenStep({
             </label>
             <input
               readOnly
-              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={
                 calcularProporcionVacaciones(senority) > 0
                   ? "$" + calcularProporcionVacaciones(senority)
@@ -115,7 +115,7 @@ export default function SevenStep({
             </label>
             <input
               readOnly
-              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={bonusSelect === "ley" ? "25%" : supBonusSelect + " %"}
             />
             <label className="font-medium text-gray-700 text-xs">Aguinaldo:</label>
@@ -128,13 +128,13 @@ export default function SevenStep({
           <h3 className="text-xl font-semibold text-gray-800 mb-4">
             Pagos pendientes
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <label className="font-medium text-gray-700 text-xs">
               Días pendientes de pago:{" "}
             </label>
             <input
               readOnly
-              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={debt.toFixed(2)}
             />
             <label className="font-medium text-gray-700 text-xs">
@@ -142,7 +142,7 @@ export default function SevenStep({
             </label>
             <input
               readOnly
-              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={vacationsDaysDebt.toFixed(2)}
             />
             <label className="font-medium text-gray-700 text-xs ">
@@ -150,7 +150,7 @@ export default function SevenStep({
             </label>
             <input
               readOnly
-              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={"$ "+ bonusVacationSenority.toFixed(2)}
             />
           </div>
@@ -209,6 +209,9 @@ export default function SevenStep({
               </span>
             </div>
         </div>
+        </div>
+        <div>
+          <p className="text-gray-700 text-xs mt-6 font-medium">Copyright © 1998 Solucionic México S.A. de C.V. Todos los derechos reservados sobre las marcas de Microsoft mostradas en este sitio son únicamente informativas y los derechos corresponden a dichas marcas. El resto de marcas registradas son propiedad de sus respectivos propietarios. Imágenes creadas por rawpixel.com / www.freepik.es</p>
         </div>
           {/* Total de finiquito */}
         </div>

@@ -44,7 +44,7 @@ export default function FirstStep({
           <input
             onChange={changeStartDate}
             type="date"
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             required
           />
         </div>
@@ -55,7 +55,7 @@ export default function FirstStep({
           <input
             onChange={changeEndDate}
             type="date"
-            className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg mt-1 p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             required
           />
         </div>
@@ -66,7 +66,7 @@ export default function FirstStep({
         <input
         readOnly
         value={senority.toFixed(2) + " años"}
-        className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+        className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
     </div>
   );
