@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import logo from "../media/logo-solucionic.png";
 import imgCalculadora from "../media/header-calculadora.png";
 import Image from "next/image";
