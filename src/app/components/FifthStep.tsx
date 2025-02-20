@@ -150,7 +150,7 @@ export default function FifthStep({
           <select
             onChange={(e) => lawPolicy(e, senority)}
             id="holidays"
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg p-3 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           >
             <option>Selecciona una opción</option>
             <option value="ley">De Acuerdo a Ley</option>
@@ -158,19 +158,6 @@ export default function FifthStep({
           </select>
         </div>
 
-        {/* Días de Vacaciones */}
-        <div>
-          <label className="font-semibold text-gray-700 mb-2 text-xs">
-            ¿Cuántos días de vacaciones te corresponden?
-          </label>
-          <input
-            type="number"
-            onChange={(e) => superiorPolicy(e, senority)}
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-            placeholder="Ingrese los días"
-            disabled={disable}
-          />
-        </div>
         {/* Política de Prima Vacacional */}
         <div>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
@@ -179,7 +166,7 @@ export default function FifthStep({
           <select
             onChange={(e) => getLawVacationsBonus(e, vacationsPolitics)}
             id="holidaysPay"
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg p-3 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           >
             <option>Selecciones una opción</option>
             <option value="ley">De Acuerdo a Ley</option>
@@ -195,48 +182,52 @@ export default function FifthStep({
           <input
             type="number"
             onChange={(e) => getSupVacationsBonus(e, vacationsPolitics)}
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese el porcentaje"
             disabled={disableBonus}
             defaultValue={30}
           />
         </div>
-      </div>
 
-      {/* Forma de Pago de Prima Vacacional */}
-      <div>
-        <label className="font-semibold text-gray-700 mb-2 text-xs">
-          ¿Cómo se paga la prima vacacional?
-        </label>
-        <select
-          id="holidaysPayWay"
-          className="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white mb-3 text-[#848484]"
-          onChange={(e) => setBonusVacation(e.target.value)}
-        >
-          <option>Seleccione una opción</option>
-          <option value="days">Por dias de vacaciones tomados</option>
-          <option value="aniv">Al cuimplimiento del aniversario </option>
-        </select>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Forma de Pago de Prima Vacacional */}
         <div>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
-            ¿Cuántos días de vacaciones de años anteriores se te adeudan?
+            ¿Cómo se paga la prima vacacional?
+          </label>
+          <select
+            id="holidaysPayWay"
+            className="border border-gray-300 rounded-lg p-3 mt-1 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white mb-3 text-[#848484]"
+            onChange={(e) => setBonusVacation(e.target.value)}
+          >
+            <option>Seleccione una opción</option>
+            <option value="days">Por dias de vacaciones tomados</option>
+            <option value="aniv">Al cuimplimiento del aniversario </option>
+          </select>
+        </div>
+        </div>
+
+        {/* Días de Vacaciones */}
+        <div>
+          <label className="font-semibold text-gray-700 mb-2 text-xs">
+            ¿Cuántos días de vacaciones te corresponden?
           </label>
           <input
             type="number"
-            onChange={(e) => getVacationDebt(e, dailyPay)}
-            className="w-full border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            onChange={(e) => superiorPolicy(e, senority)}
+            className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese los días"
+            disabled={disable}
           />
         </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
         <div>
           <label className="font-semibold text-gray-700 mb-2 text-xs ">
             Vacaciones proporcionales:
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mt-6 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+          className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationsPolitics?.toFixed(2)}/>
           
@@ -247,7 +238,7 @@ export default function FifthStep({
             Prima vacacional proporcional:{" "}
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+          className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationsBonus?.toFixed(2)}/>
         </div>
@@ -256,19 +247,30 @@ export default function FifthStep({
             Vacaciones pendientes de disfrutar:{" "}
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+          className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationDebt?.toFixed(2)}/>
         </div>
-      </div>
-      {/* Vacaciones Adeudadas */}
-      <label className="mt-2 p-3  text-gray-800 rounded-lg text-center font-semibold text-xs">
+        <div>
+          {/* Vacaciones Adeudadas */}
+      <label className="font-semibold text-gray-700 mb-2 text-xs">
         Prima vacacional de vacaciones pendientes:{" "}
       </label>
       <input
-          className=" w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+          className=" w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={pendientBonus?.toFixed(2)}/>
+        </div>
+      </div>
+      <label className="font-semibold text-gray-700 mb-2 text-xs">
+            ¿Cuántos días de vacaciones de años anteriores se te adeudan?
+          </label>
+          <input
+            type="number"
+            onChange={(e) => getVacationDebt(e, dailyPay)}
+            className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            placeholder="Ingrese los días"
+          />
     </div>
   );
 }

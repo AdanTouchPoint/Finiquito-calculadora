@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import HeaderSolucionicStep from './components/header';
 import FirstStep from "./components/FirstStep";
 import FourthStep from "./components/FourthStep";
 import SecondStep from "./components/SecondStep";
@@ -29,76 +30,79 @@ export default function Home() {
       const [supBonusSelect,setSupBonusSelect] = useState(0);
       const [bonusSelect,setBonusSelect] = useState('');
   return (
-    <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
-   <FirstStep
-    startDate={startDate}
-    setStartDate={setStartDate}
-    endDate={endDate}
-    setEndDate={setEndDate}
-    workedDays={workedDays}
-    setWorkedDays={setWorkedDays} 
-    senority={senority}
-    setSenority={setSenority}  
-    />
-    <SecondStep/>
-    <ThirdStep
-    dailyPay={dailyPay}
-    setDailyPay={setDailyPay}
-    salary={salary}
-    setSalary={setSalary}
-    debt={debt}
-    setDebt={setDebt}
-    totalDebt={totalDebt}
-    setTotalDebt={setTotalDebt}
-    period={period}
-    setPeriod={setPeriod}
-    />
-    <FourthStep
-    aguinaldoDays={aguinaldoDays}
-    setAguinaldoDays={setAguinaldoDays}
-    aguinaldo={aguinaldo}
-    setAguinaldo={setAguinaldo}
-    dailyPay={dailyPay}
-    workedDays={workedDays}
-    />
-    <FifthStep
-    senority={senority}
-    dailyPay={dailyPay}
-    setVacationsDaysDebt={setVacationsDaysDebt}
-    vacationDebt={vacationDebt}
-    setVacationDebt={setVacationDebt}
-    vacationsPolitics={vacationsPolitics}
-    setVacationsPolitics={setVacationsPolitics}
-    pendientBonus={pendientBonus}
-    setPendientBonus={setPendientBonus}
-    vacationsBonus={vacationsBonus}
-    setVacationsBonus={setVacationsBonus}
-    supBonusSelect={supBonusSelect}
-    setSupBonusSelect={setSupBonusSelect}
-    bonusSelect={bonusSelect}
-    setBonusSelect={setBonusSelect}
-    />
-    <SixStep
-    senority={senority}
-    dailyPay={dailyPay}
-    setSenorityBonus={setSenorityBonus}
-    />
-    <SevenStep
-    dailyPay={dailyPay}
-    senority={senority}
-    aguinaldoDays={aguinaldoDays}
-    debt={debt}
-    vacationsDaysDebt={vacationsDaysDebt}
-    vacationDebt={vacationDebt}
-    totalDebt={totalDebt}
-    aguinaldo={aguinaldo}
-    vacationsPolitics={vacationsPolitics}
-    senorityBonus={senorityBonus}
-    pendientBonus={pendientBonus}
-    vacationsBonus={vacationsBonus}
-    supBonusSelect={supBonusSelect}
-    bonusSelect={bonusSelect}
-    />
+    <div className="max-w-2xl mx-auto bg-gray-200 shadow-lg p-8">
+        {/* <HeaderSolucionicStep/> */}
+      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg border border-gray-200 p-8">
+        <FirstStep
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          workedDays={workedDays}
+          setWorkedDays={setWorkedDays} 
+          senority={senority}
+          setSenority={setSenority}  
+          />
+          <SecondStep/>
+          <ThirdStep
+          dailyPay={dailyPay}
+          setDailyPay={setDailyPay}
+          salary={salary}
+          setSalary={setSalary}
+          debt={debt}
+          setDebt={setDebt}
+          totalDebt={totalDebt}
+          setTotalDebt={setTotalDebt}
+          period={period}
+          setPeriod={setPeriod}
+          />
+          <FourthStep
+          aguinaldoDays={aguinaldoDays}
+          setAguinaldoDays={setAguinaldoDays}
+          aguinaldo={aguinaldo}
+          setAguinaldo={setAguinaldo}
+          dailyPay={dailyPay}
+          workedDays={workedDays}
+          />
+          <FifthStep
+          senority={senority}
+          dailyPay={dailyPay}
+          setVacationsDaysDebt={setVacationsDaysDebt}
+          vacationDebt={vacationDebt}
+          setVacationDebt={setVacationDebt}
+          vacationsPolitics={vacationsPolitics}
+          setVacationsPolitics={setVacationsPolitics}
+          pendientBonus={pendientBonus}
+          setPendientBonus={setPendientBonus}
+          vacationsBonus={vacationsBonus}
+          setVacationsBonus={setVacationsBonus}
+          supBonusSelect={supBonusSelect}
+          setSupBonusSelect={setSupBonusSelect}
+          bonusSelect={bonusSelect}
+          setBonusSelect={setBonusSelect}
+          />
+          <SixStep
+          senority={senority}
+          dailyPay={dailyPay}
+          setSenorityBonus={setSenorityBonus}
+          />
+      </div>
+      <SevenStep
+      dailyPay={dailyPay}
+      senority={senority}
+      aguinaldoDays={aguinaldoDays}
+      debt={debt}
+      vacationsDaysDebt={vacationsDaysDebt}
+      vacationDebt={vacationDebt}
+      totalDebt={totalDebt}
+      aguinaldo={aguinaldo}
+      vacationsPolitics={vacationsPolitics}
+      senorityBonus={senorityBonus}
+      pendientBonus={pendientBonus}
+      vacationsBonus={vacationsBonus}
+      supBonusSelect={supBonusSelect}
+      bonusSelect={bonusSelect}
+      />
     </div>
   );
 }
