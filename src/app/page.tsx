@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import HeaderSolucionicStep from './components/header';
+// import HeaderSolucionicStep from './components/header';
 import FirstStep from "./components/FirstStep";
 import FourthStep from "./components/FourthStep";
 import SecondStep from "./components/SecondStep";
