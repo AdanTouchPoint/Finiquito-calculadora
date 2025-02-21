@@ -220,6 +220,18 @@ export default function FifthStep({
           />
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-1">
+          <label className="font-semibold text-gray-700 mb-0 text-xs">
+            ¿Cuántos días de vacaciones de años anteriores se te adeudan?
+          </label>
+          <input
+            type="number"
+            onChange={(e) => getVacationDebt(e, dailyPay)}
+            className="w-full border border-gray-300 rounded-lg p-2 mb-3 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            placeholder="Ingrese los días"
+          />
+        </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         
         <div>
@@ -262,15 +274,7 @@ export default function FifthStep({
           value={pendientBonus?.toFixed(2)}/>
         </div>
       </div>
-      <label className="font-semibold text-gray-700 mb-2 text-xs">
-            ¿Cuántos días de vacaciones de años anteriores se te adeudan?
-          </label>
-          <input
-            type="number"
-            onChange={(e) => getVacationDebt(e, dailyPay)}
-            className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-            placeholder="Ingrese los días"
-          />
+      
     </div>
   );
 }
