@@ -29,7 +29,7 @@ export default function FirstStep({
   };
   useEffect(() => {
     if (!startDate || !endDate) return;
-    setSenority(calcularAntiguedad(startDate, endDate, 365));
+    setSenority(calcularAntiguedad(startDate, endDate, 365.25));
     setWorkedDays(calcularAntiguedad(startDate, endDate, 1));
   }, [startDate, endDate, setSenority, setWorkedDays]);
   // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
@@ -65,7 +65,7 @@ export default function FirstStep({
         </label>
         <input
         readOnly
-        value={senority.toFixed(4) + " años"}
+        value={senority.toFixed(2) + " años"}
         className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
     </div>
