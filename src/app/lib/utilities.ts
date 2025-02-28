@@ -15,7 +15,10 @@ export function calcularAntiguedad(startDate:string, endDate: string, lapse: num
     const diferenciaMilisegundos: number = endDateObj.getTime() - startDateObj.getTime();
   
     // Convertir la diferencia de milisegundos a años (aproximado, considerando 365.25 días por año para incluir años bisiestos)
-   const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * lapse);
+    // Sumar a diferenciaMilisegundos 1 día para que cuente el día de inicio
+    const diferenciaMilisegundosConDiaInicio = diferenciaMilisegundos + (1000 * 60 * 60 * 24);
+
+   const days = diferenciaMilisegundosConDiaInicio / (1000 * 60 * 60 * 24 * lapse);
    
    if (days > 365) {
     const lastFour = endDate.slice(0,4);

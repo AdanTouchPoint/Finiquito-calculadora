@@ -34,7 +34,7 @@ export default function FourthStep({
     <div className="mb-6">
       <h2 className="text-red-600 text-lg font-semibold mb-3">Aguinaldo</h2>
       {/* Política de Aguinaldo */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
         <div>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
             Política de Aguinaldo
@@ -48,7 +48,7 @@ export default function FourthStep({
             <option value="sup">Superior</option>
           </select>
         </div>
-        <div>
+        <div hidden={disableInput !== "sup" ? true : false}>
           {/* Días de Aguinaldo */}
           <label  className="font-semibold text-gray-700 mb-2 text-xs">
             ¿Cuántos días de aguinaldo corresponden?
@@ -56,7 +56,8 @@ export default function FourthStep({
           <input
             onChange={(e) => setAguinaldoDays(Number(e.target.value))}
             type="number"
-            className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"            placeholder="Ingrese los días"
+            className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"            
+            placeholder="Ingrese los días"
             defaultValue={15}
             min={15}
             disabled={disableInput !== "sup" ? true : false}

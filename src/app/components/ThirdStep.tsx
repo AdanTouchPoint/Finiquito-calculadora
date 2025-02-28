@@ -15,7 +15,7 @@ setPeriod: React.Dispatch<React.SetStateAction<number>>;
 export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,setDebt,totalDebt,setTotalDebt,period,setPeriod}: ThirdStepProps) {
 
     useEffect(() => {
-        if(period === 0 || salary === 0 || debt === 0){
+        if(period === 0 || salary === 0){
             return
         }
     setDailyPay(salary/period);
@@ -33,6 +33,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
             onChange={(e) => setSalary(Number(e.target.value))}
             className="border border-gray-300 rounded-lg p-2 mt-1 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese el salario"
+            min={0}
           />
           </div>
           
@@ -57,6 +58,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
             onChange={(e) => setDebt(Number(e.target.value))}
             className="border border-gray-300 rounded-lg p-2 mt-1 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese los días adeudados"
+            min={0}
           />
         </div>
         <div className="grid grid-cols-1 mb-4 md:grid-cols-2 gap-4 mt-4">

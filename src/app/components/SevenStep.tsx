@@ -96,7 +96,7 @@ export default function SevenStep({
             <input
               readOnly
               className=" text-black font-semibold bg-gray-100 text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={senority.toFixed(2)}
+              value={senority.toFixed(4) + ' años' }
             />
             <label className="font-medium text-gray-700 text-xs">
               Política vacaciones por antigüedad:
@@ -106,8 +106,8 @@ export default function SevenStep({
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={
                 calcularProporcionVacaciones(senority) > 0
-                  ? "$" + calcularProporcionVacaciones(senority)
-                  : '$ ' + 0
+                  ? calcularProporcionVacaciones(senority) + ' días'
+                  : 0 + ' días'
               }
             />
             <label className="font-medium text-gray-700 text-xs">
@@ -122,7 +122,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={" $ " + aguinaldoDays.toFixed(2)}
+              value={aguinaldoDays.toFixed(0) + ' días' }
             />
           </div>
           <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -135,7 +135,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={debt.toFixed(2)}
+              value={debt.toFixed(2) + ' días'}
             />
             <label className="font-medium text-gray-700 text-xs">
               Días de vacaciones pendientes de pago:
@@ -143,7 +143,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={vacationsDaysDebt.toFixed(2)}
+              value={vacationsDaysDebt.toFixed(2) + ' días'}
             />
             <label className="font-medium text-gray-700 text-xs ">
               Prima vacacional pendiente de pago:
@@ -151,7 +151,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={"$ "+ bonusVacationSenority.toFixed(2)}
+              value={bonusVacationSenority.toFixed(2) + ' días'}
             />
           </div>
         </div>
@@ -213,7 +213,6 @@ export default function SevenStep({
         <div>
           <p className="text-gray-700 text-xs mt-6 font-medium">Copyright © 1998 Solucionic México S.A. de C.V. Todos los derechos reservados sobre las marcas de Microsoft mostradas en este sitio son únicamente informativas y los derechos corresponden a dichas marcas. El resto de marcas registradas son propiedad de sus respectivos propietarios. Imágenes creadas por rawpixel.com / www.freepik.es</p>
         </div>
-          {/* Total de finiquito */}
         </div>
       </div>
     </div>
