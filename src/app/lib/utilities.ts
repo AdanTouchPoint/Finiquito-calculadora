@@ -25,6 +25,10 @@ export function calcularAntiguedad(startDate:string, endDate: string, lapse: num
    }
   return days
   }
+  export function years (senority:number) {
+      if(senority < 1 || senority >= 2 ) return " años"
+      return " año"
+    }
 
   export function calcularProporcionAguinaldo(workedDays :  number, aguinaldoDays: number, dailyPay: number): number {
 

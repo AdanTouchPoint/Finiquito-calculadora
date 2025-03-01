@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { calcularProporcionVacaciones } from "../lib/utilities";
+import { calcularProporcionVacaciones, years } from "../lib/utilities";
 interface SevenStepProps {
   vacationsBonus: number;
   pendientBonus: number;
@@ -96,7 +96,7 @@ export default function SevenStep({
             <input
               readOnly
               className=" text-black font-semibold bg-gray-100 text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={senority.toFixed(2) + ' años' }
+              value={senority.toFixed(0) + years(senority)}
             />
             <label className="font-medium text-gray-700 text-xs">
               Política vacaciones por antigüedad:

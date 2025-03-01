@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { calcularAntiguedad } from "../lib/utilities";
+import { calcularAntiguedad,years } from "../lib/utilities";
 interface FirstStepProps {
   senority: number;
   setSenority: React.Dispatch<React.SetStateAction<number>>;
@@ -65,7 +65,7 @@ export default function FirstStep({
         </label>
         <input
         readOnly
-        value={senority.toFixed(2) + " años"}
+        value={senority.toFixed(0) +  years(senority)}
         className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
     </div>
