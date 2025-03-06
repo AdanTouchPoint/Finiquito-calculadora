@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-// import HeaderSolucionicStep from './components/header';
 import FirstStep from "./components/FirstStep";
 import FourthStep from "./components/FourthStep";
 import SecondStep from "./components/SecondStep";
@@ -30,8 +29,8 @@ export default function Home() {
       const [supBonusSelect,setSupBonusSelect] = useState(0);
       const [bonusSelect,setBonusSelect] = useState('');
   return (
-    <div className="max-w-2xl mx-auto bg-gray-200 shadow-lg p-8">
-        {/* <HeaderSolucionicStep/> */}
+<div className="bg-[#F5F6F8]">
+<div className="max-w-2xl mx-auto bg-[#F5F6F8]  p-8">
       <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg border border-gray-200 p-8">
         <FirstStep
           startDate={startDate}
@@ -104,6 +103,7 @@ export default function Home() {
       bonusSelect={bonusSelect}
       />
     </div>
+</div>
   );
 }
 
