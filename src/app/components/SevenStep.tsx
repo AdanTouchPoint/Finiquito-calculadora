@@ -73,7 +73,7 @@ export default function SevenStep({
     );
   };
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-6">
+    <div className="max-w-[1200px] mx-auto p-6 mt-6">
       <h2 className="text-2xl font-semibold text-center text-black">
         Detalle de <span className="text-red-500 font-bold">Finiquito</span>
       </h2>

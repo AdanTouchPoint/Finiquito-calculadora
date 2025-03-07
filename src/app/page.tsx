@@ -30,8 +30,8 @@ export default function Home() {
       const [bonusSelect,setBonusSelect] = useState('');
   return (
 <div className="bg-[#F5F6F8]">
-<div className="max-w-2xl mx-auto bg-[#F5F6F8]  p-8">
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg border border-gray-200 p-8">
+<div className="max-w-[1200px] mx-auto bg-[#F5F6F8]  p-8">
+      <div className="max-w-[1200px] mx-auto bg-white shadow-lg rounded-lg border border-gray-200 p-8">
         <FirstStep
           startDate={startDate}
           setStartDate={setStartDate}
