@@ -61,8 +61,8 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
             min={0}
           />
         </div>
-        <div className="grid grid-cols-1 mb-4 md:grid-cols-2 gap-4 mt-4">
-        <div>
+        <div hidden={true} className="grid grid-cols-1 mb-4 md:grid-cols-2 gap-4 mt-4">
+        <div hidden>
         <label className="block text-gray-700 font-semibold text-xs">
           Salario diario:
         </label>
@@ -72,7 +72,7 @@ export default function ThirdStep({dailyPay,setDailyPay,salary,setSalary,debt,se
         className="border border-gray-300 rounded-lg p-2 mt-1 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
         </div>
-     <div>
+     <div hidden>
      <label className="block text-gray-700 font-semibold text-xs">
           Importe de salario pendiente:
         </label>

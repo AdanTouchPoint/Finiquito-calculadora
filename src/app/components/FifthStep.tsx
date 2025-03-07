@@ -222,8 +222,8 @@ export default function FifthStep({
             min={0}
           />
         </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
+      <div hidden className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div hidden >
           <label className="font-semibold text-gray-700 mb-2 text-xs ">
             Vacaciones proporcionales:
           </label>
@@ -233,7 +233,7 @@ export default function FifthStep({
           value={vacationsPolitics.toFixed(2)}/>
         </div>
         {/* Resultados */}
-        <div>
+        <div hidden >
           <label className="font-semibold text-gray-700 mb-2 text-xs">
             Prima vacacional proporcional:{" "}
           </label>
@@ -242,7 +242,7 @@ export default function FifthStep({
           disabled
           value={vacationsBonus.toFixed(2)}/>
         </div>
-        <div>
+        <div hidden>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
             Vacaciones pendientes de disfrutar:{" "}
           </label>
@@ -251,7 +251,7 @@ export default function FifthStep({
           disabled
           value={vacationDebt.toFixed(2)}/>
         </div>
-        <div>
+        <div hidden>
           {/* Vacaciones Adeudadas */}
       <label className="font-semibold text-gray-700 mb-2 text-xs">
         Prima vacacional de vacaciones pendientes:{" "}

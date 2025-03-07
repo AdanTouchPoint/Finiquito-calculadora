@@ -63,7 +63,7 @@ export default function FourthStep({
             disabled={disableInput !== "sup" ? true : false}
           />
         </div>
-        <div>
+        <div hidden>
         {/* Días trabajados */}
         <label  className="font-semibold text-gray-700 mb-2 text-xs">
           Días trabajados para aguinaldo
@@ -75,7 +75,7 @@ export default function FourthStep({
         />
       </div>
 
-      <div>
+      <div hidden>
         {/* Resultado */}
         <label  className="font-semibold text-gray-700 mb-2 text-xs">
           Proporción de aguinaldo
