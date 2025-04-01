@@ -57,8 +57,8 @@ export default function SevenStep({
     vacationDebt,
   ]);
 
-  function reset (e) {
-    e.preventDefault()
+  function reset () {
+    
     window.scrollTo(0, 0);
     window.location.reload()
   }
