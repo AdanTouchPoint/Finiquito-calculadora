@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import FirstStep from "./components/FirstStep";
 import FourthStep from "./components/FourthStep";
-import SecondStep from "./components/SecondStep";
 import ThirdStep from "./components/ThirdStep";
 import FifthStep from "./components/FifthStep";
 import SixStep from "./components/SixStep";
@@ -42,7 +41,7 @@ export default function Home() {
           senority={senority}
           setSenority={setSenority}  
           />
-          <SecondStep/>
+          
           <ThirdStep
           dailyPay={dailyPay}
           setDailyPay={setDailyPay}

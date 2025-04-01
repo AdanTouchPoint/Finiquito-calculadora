@@ -34,7 +34,7 @@ export default function FourthStep({
     <div className="mb-6">
       <h2 className="text-red-600 text-lg font-semibold mb-3">Aguinaldo</h2>
       {/* Política de Aguinaldo */}
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
         <div>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
             Política de Aguinaldo
@@ -71,7 +71,7 @@ export default function FourthStep({
         <input
         readOnly
         value={workedDays + " días"}	
-        className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+        className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
       </div>
 
@@ -82,7 +82,7 @@ export default function FourthStep({
         </label>
         <input
         readOnly
-        className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+        className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         value={aguinaldo > 0 ? aguinaldo.toFixed(2) : 0}
         />
       </div>

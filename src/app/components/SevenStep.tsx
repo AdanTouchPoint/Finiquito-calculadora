@@ -57,6 +57,11 @@ export default function SevenStep({
     vacationDebt,
   ]);
 
+  function reset (e) {
+    e.preventDefault()
+    window.scrollTo(0, 0);
+    window.location.reload()
+  }
   const calculateTotal = (
     totalDebt: number,
     aguinaldo: number,
@@ -80,7 +85,9 @@ export default function SevenStep({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         <div>
           {/* Desglose de pagos de finiquito */}
-          <h2 className="text-black text-lg font-semibold mb-3">Prestaciones</h2>
+          <h2 className="text-black text-lg font-semibold mb-3">
+            Prestaciones
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
             <label className="font-medium text-gray-700 text-xs mb-2 text-justify">
               Salario diario:
@@ -88,7 +95,11 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-right text-black font-semibold w-full border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={'$ '+ dailyPay.toFixed(2)}
+              value={
+                dailyPay.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                }) || "0.00"
+              }
             />
             <label className="font-medium text-gray-700 text-xs">
               Total de años trabajados:
@@ -106,8 +117,8 @@ export default function SevenStep({
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={
                 calcularProporcionVacaciones(senority) > 0
-                  ? calcularProporcionVacaciones(senority) + ' días'
-                  : 0 + ' días'
+                  ? calcularProporcionVacaciones(senority) + " días"
+                  : 0 + " días"
               }
             />
             <label className="font-medium text-gray-700 text-xs">
@@ -118,11 +129,13 @@ export default function SevenStep({
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={bonusSelect === "ley" ? "25%" : supBonusSelect + " %"}
             />
-            <label className="font-medium text-gray-700 text-xs">Aguinaldo:</label>
+            <label className="font-medium text-gray-700 text-xs">
+              Aguinaldo:
+            </label>
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={aguinaldoDays.toFixed(0) + ' días' }
+              value={aguinaldoDays.toFixed(0) + " días"}
             />
           </div>
           <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -135,7 +148,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={debt.toFixed(2) + ' días'}
+              value={debt.toFixed(2) + " días"}
             />
             <label className="font-medium text-gray-700 text-xs">
               Días de vacaciones pendientes de pago:
@@ -143,7 +156,7 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={vacationsDaysDebt.toFixed(2) + ' días'}
+              value={vacationsDaysDebt.toFixed(2) + " días"}
             />
             <label className="font-medium text-gray-700 text-xs ">
               Prima vacacional pendiente de pago:
@@ -151,70 +164,106 @@ export default function SevenStep({
             <input
               readOnly
               className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={bonusVacationSenority.toFixed(2) + ' días'}
+              value={bonusVacationSenority.toFixed(2) + " días"}
             />
           </div>
         </div>
         <div className="p-4 rounded-lg">
-        <div className="bg-white p-4 rounded-lg">
-        <div className="text-center justify-between items-center">
+          <div className="bg-white p-4 rounded-lg">
+            <div className="text-center justify-between items-center">
               <h2 className="text-xs font-medium text-gray-500 mb-2">
                 Total de percepciones:
               </h2>
               <div className="text-red-500 font-bold text-3xl">
-                {"$" + calculateTotal(
+                {calculateTotal(
                   totalDebt,
                   aguinaldo,
                   vacationsTotal,
                   vacationsBonusTotal,
                   senorityBonus
-                ).toFixed(2)}
+                ).toLocaleString("en-US", { minimumFractionDigits: 2 }) ||
+                  "0.00"}
               </div>
-        </div>
-        <div className="mt-1 border-t border-gray-500 pt-4">
-        </div>
-          {/* Desgloses adicionales */}
-        <div className="space-y-2">
-            <h3 className="font-bold text-black mb-4 text-xs">
-              Desglose de pagos de finiquito
-            </h3>
-            <div className="flex justify-between items-center">
-              <span className="font-medium text-gray-700 text-xs">Sueldo:</span>
-              <span className="text-black font-bold">{"$ " + totalDebt?.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="font-medium text-gray-700 text-xs">Aguinaldo:</span>
-              <span className="text-black font-bold">{"$ " + aguinaldo?.toFixed(2)}</span>
+            <div className="mt-1 border-t border-gray-500 pt-4"></div>
+            {/* Desgloses adicionales */}
+            <div className="space-y-2">
+              <h3 className="font-bold text-black mb-4 text-xs">
+                Desglose de pagos de finiquito
+              </h3>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-gray-700 text-xs">
+                  Sueldo:
+                </span>
+                <span className="text-black font-bold">
+                  {totalDebt?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) || "0.00"}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-gray-700 text-xs">
+                  Aguinaldo:
+                </span>
+                <span className="text-black font-bold">
+                  {aguinaldo?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) || "0.00"}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-gray-700 text-xs">
+                  Vacaciones:{" "}
+                </span>
+                <span className="text-black font-bold">
+                  {vacationsTotal?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) || "0.00"}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-gray-700 text-xs">
+                  Prima vacacional:{" "}
+                </span>
+                <span defaultValue={0} className="text-black font-bold">
+                  {vacationsBonusTotal?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) || "0.00"}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-gray-700 text-xs">
+                  Prima de antigüedad:
+                </span>
+                <span defaultValue={0} className="text-black font-bold">
+                  {senorityBonus?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) || "0.00"}
+                </span>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="font-medium text-gray-700 text-xs">Vacaciones: </span>
-              <span className="text-black font-bold">
-                {"$ " + vacationsTotal?.toFixed(2)}
-              </span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="font-medium text-gray-700 text-xs">
-                Prima vacacional:{" "}
-              </span>
-              <span defaultValue={0} className="text-black font-bold">
-                {"$ " + vacationsBonusTotal?.toFixed(2)}
-              </span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="font-medium text-gray-700 text-xs">
-                Prima de antigüedad:
-              </span>
-              <span defaultValue={0} className="text-black font-bold">
-                {"$ " + senorityBonus.toFixed(2)}
-              </span>
-            </div>
-        </div>
-        </div>
-        <div>
-          <p className="text-gray-700 text-xs mt-6 font-medium">Copyright © 1998 Solucionic México S.A. de C.V. Todos los derechos reservados sobre las marcas de Microsoft mostradas en este sitio son únicamente informativas y los derechos corresponden a dichas marcas. El resto de marcas registradas son propiedad de sus respectivos propietarios. Imágenes creadas por rawpixel.com / www.freepik.es</p>
-        </div>
+          </div>
+          <div>
+            <p className="text-gray-700 text-xs mt-6 font-medium">
+              Copyright © 1998 Solucionic México S.A. de C.V. Todos los derechos
+              reservados sobre las marcas de Microsoft mostradas en este sitio
+              son únicamente informativas y los derechos corresponden a dichas
+              marcas. El resto de marcas registradas son propiedad de sus
+              respectivos propietarios. Imágenes creadas por rawpixel.com /
+              www.freepik.es
+            </p>
+          </div>
+          <div>
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 mt-4"
+              onClick={reset}
+            >
+              Empezar de nuevo{" "}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+

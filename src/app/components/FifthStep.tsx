@@ -136,7 +136,7 @@ export default function FifthStep({
   return (
     <div className="mb-6">
             <h2 className="text-red-600 text-lg font-semibold mb-3">Vacaciones y Prima vacacional</h2>
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
         {/* Política de Vacaciones */}
         <div>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
@@ -160,7 +160,7 @@ export default function FifthStep({
           <input
             type="number"
             onChange={(e) => setPolicyValue(parseFloat(e.target.value))}
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese los días"
             min={0}
           />
@@ -187,7 +187,7 @@ export default function FifthStep({
           <input
             type="number"
             onChange={(e) => getSupVacationsBonus(e)}
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+            className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese el porcentaje"
             disabled={disableBonus}
             defaultValue={30}
@@ -210,7 +210,7 @@ export default function FifthStep({
           </select>
         </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
           <label className="font-semibold text-gray-700 mb-0 text-xs">
             ¿Cuántos días de vacaciones de años anteriores se te adeudan?
           </label>
@@ -247,7 +247,7 @@ export default function FifthStep({
             Vacaciones pendientes de disfrutar:{" "}
           </label>
           <input
-          className="w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+          className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={vacationDebt.toFixed(2)}/>
         </div>
@@ -257,7 +257,7 @@ export default function FifthStep({
         Prima vacacional de vacaciones pendientes:{" "}
       </label>
       <input
-          className=" w-full border border-gray-300 rounded-lg p-2 mb-4 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
+          className=" w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           disabled
           value={pendientBonus.toFixed(2)}/>
         </div>
