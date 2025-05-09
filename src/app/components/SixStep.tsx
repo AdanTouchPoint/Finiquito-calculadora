@@ -11,7 +11,8 @@ export default function SixStep({senority, dailyPay,setSenorityBonus}: SixStepPr
         const receivesSeniorityBonus = (senority: number, dailyPay: number) => {
             if (senority > 15) {
                 const minimumSalary = 248.93 * 2;
-                return dailyPay > minimumSalary ? setSenorityBonus(minimumSalary) : setSenorityBonus(dailyPay * 12 * senority);
+                const UMA = 113.14;
+                return dailyPay > minimumSalary ? setSenorityBonus(UMA * 12 * senority) : setSenorityBonus(dailyPay * 12 * senority);
             } else {
                 return false;
             }
