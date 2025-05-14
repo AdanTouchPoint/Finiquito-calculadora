@@ -42,6 +42,7 @@ export default function SevenStep({
   const [vacationsBonusTotal, setVacationsBonusTotal] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const templateRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (bonusSelect === "") return;
     if (bonusSelect === "ley")
@@ -85,32 +86,53 @@ export default function SevenStep({
   };
   const handleDownloadPDF = async () => {
     if (!contentRef.current) return;
-
+    if (!templateRef.current) return;
     setIsGenerating(true);
     try {
       const element = contentRef.current;
       const optimalScale = window.devicePixelRatio * 2; // Limitar escala máxima
       const canvas = await html2canvas(element, {
         scale: optimalScale,
+        logging: true,
       });
-
       const imgData = canvas.toDataURL("image/png");
+
+      const screenshotImg = templateRef?.current.querySelector(
+        "#screenshot-img"
+      ) as HTMLImageElement;
+      if (screenshotImg) {
+        screenshotImg.src = imgData;
+        // Espera a que la imagen cargue
+        await new Promise((resolve) => {
+          screenshotImg.onload = resolve;
+        });
+      }
+      // 3. Captura la plantilla completa
+
+      const templateCanvas = await html2canvas(templateRef.current, {
+        useCORS: true, // Necesario para imágenes externas
+        scale: optimalScale,
+        logging: true,
+      });
       const pdf = new jsPDF({
         orientation: element.offsetWidth > element.offsetHeight ? "l" : "p",
         unit: "px",
-        format: [element.offsetWidth * optimalScale, element.offsetHeight * optimalScale],
+        format: [
+          element.offsetWidth * optimalScale,
+          element.offsetHeight * optimalScale,
+        ],
         compress: true, // Activar compresión PDF
       });
 
       pdf.addImage(
-        imgData,
+        templateCanvas,
         "PNG",
         0,
         0,
         element.offsetWidth * optimalScale,
         element.offsetHeight * optimalScale,
         undefined,
-        "FAST",
+        "FAST"
       );
 
       pdf.save("resultados.pdf");
@@ -230,7 +252,10 @@ export default function SevenStep({
                     "0.00"}
                 </div>
               </div>
-              <div data-html2canvas-ignore className="mt-1 border-t border-gray-500 pt-4"></div>
+              <div
+                data-html2canvas-ignore
+                className="mt-1 border-t border-gray-500 pt-4"
+              ></div>
               {/* Desgloses adicionales */}
               <div className="space-y-2">
                 <h3 className="font-bold text-black mb-4 text-xs">
@@ -297,27 +322,56 @@ export default function SevenStep({
                 propiedad de sus respectivos propietarios. Imágenes creadas por
                 rawpixel.com / www.freepik.es
               </p>
+              <p className="text-gray-700 text-xs mt-2 font-medium">
+                Este simulador es solo una herramienta de apoyo y no sustituye
+                el asesoramiento legal. Para más información, consulta a un
+                abogado.{" "}
+              </p>
             </div>
             <div data-html2canvas-ignore>
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 mt-4"
-          onClick={reset}
-
-        >
-          Empezar de nuevo
-        </button>
-        <button
-          onClick={handleDownloadPDF}
-          disabled={isGenerating}
-          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 mt-4 ml-5"
-        >
-          {isGenerating ? "Generando PDF..." : "Descargar PDF"}
-        </button>
-      </div>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 mt-4"
+                onClick={reset}
+              >
+                Empezar de nuevo
+              </button>
+              <button
+                onClick={handleDownloadPDF}
+                disabled={isGenerating}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 mt-4 ml-5"
+              >
+                {isGenerating ? "Generando PDF..." : "Descargar PDF"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
+      <div
+        ref={templateRef}
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "800px",
+          height: "600px",
+          background: "white",
+        }}
+      >
+        <img
+          id="screenshot-img"
+          alt="Captura"
+          style={{ padding: 20, width: "100%", height: "auto" }}
+        />
+        <img
+          src="/logosolu.png" // Coloca tu logo en /public/logo.png
+          alt="Logo"
+          style={{
+            position: "absolute",
+            top: 20,
+            left: 20,
+            width: 150,
+          }}
+        />
+      </div>
     </div>
   );
 }
