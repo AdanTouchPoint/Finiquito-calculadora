@@ -92,8 +92,8 @@ export default function SevenStep({
       const element = contentRef.current;
       const optimalScale = window.devicePixelRatio * 2; // Limitar escala máxima
       const canvas = await html2canvas(element, {
-        scale: optimalScale,
-        logging: true,
+          logging: true,
+          //scale: optimalScale,
       });
       const imgData = canvas.toDataURL("image/png");
 
@@ -323,9 +323,7 @@ export default function SevenStep({
                 rawpixel.com / www.freepik.es
               </p>
               <p className="text-gray-700 text-xs mt-2 font-medium">
-                Este simulador es solo una herramienta de apoyo y no sustituye
-                el asesoramiento legal. Para más información, consulta a un
-                abogado.{" "}
+                *Este cálculo es aproximado. Son sólo cálculos de las percepciones y no se incluyen el cálculo de impuestos (ISR, IMSS, SAR). Se recomienda consultar con un especialista para obtener información exacta.
               </p>
             </div>
             <div data-html2canvas-ignore>
