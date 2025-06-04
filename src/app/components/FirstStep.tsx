@@ -65,7 +65,7 @@ export default function FirstStep({
         </label>
         <input
         readOnly
-        value={senority.toFixed(1) +  years(senority)}
+        value={senority.toFixed(2) +  years(senority)}
         className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
         />
     </div>

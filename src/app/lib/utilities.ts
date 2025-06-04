@@ -1,85 +1,71 @@
 function sumarUnDia(fecha: Date) {
   // Crear una nueva instancia de la fecha para no modificar la original
   const nuevaFecha = new Date(fecha);
-  
+
   // Sumar un día (24 horas en milisegundos)
   nuevaFecha.setDate(nuevaFecha.getDate() + 1);
-  
+
   return nuevaFecha;
 }
-export function calcularAntiguedad(startDate:string, endDate: string, lapse: number): number {
-    // Verificar que ambas fechas estén seleccionadas
-    if (!startDate || !endDate) {
-      return 0 ; // Salir de la función si falta alguna fecha
-    }
+export function calcularAntiguedad(
+  startDate: string,
+  endDate: string,
+  lapse: number
+): number {
+  // Verificar que ambas fechas estén seleccionadas
+  if (!startDate || !endDate) {
+    return 0; // Salir de la función si falta alguna fecha
+  }
 
-    // Convertir las fechas de string a objetos Date
-    const startDateObj = new Date(startDate);
-    const endDateObj = new Date(endDate);
+  // Convertir las fechas de string a objetos Date
+  const startDateObj = new Date(startDate);
+  const endDateObj = new Date(endDate);
 
+  // Validar que las fechas sean válidas
+  if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
+    return 0;
+  }
 
-    // Validar que las fechas sean válidas
-    if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
-      return 0;
-    }
-
-    // Sumar un día a cada fecha
+  // Sumar un día a cada fecha
   const startDateModificada = sumarUnDia(startDateObj);
   const endDateModificada = sumarUnDia(endDateObj);
-    // Calcular la diferencia en milisegundos
-    const diferenciaMilisegundos: number = endDateModificada.getTime() - startDateModificada.getTime();
-  
-    // Convertir la diferencia de milisegundos a años (aproximado, considerando 365.25 días por año para incluir años bisiestos)
-   const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * lapse);
-   
-   if (days > 365) {
-    const lastFour = endDate.slice(0,4);
-    const date = `${lastFour}-01-01`
-    const propocionalDays = calcularAntiguedad(date, endDate,1)
-    return propocionalDays
-   }
-  return days
- }
-  export function years (senority:number) {
-      if(senority < 1 || senority >= 2 ) return " años"
-      return " año"
-    }
+  // Calcular la diferencia en milisegundos
+  const diferenciaMilisegundos: number =
+    endDateModificada.getTime() - startDateModificada.getTime();
 
-  export function calcularProporcionAguinaldo(workedDays :  number, aguinaldoDays: number, dailyPay: number): number {
+  // Convertir la diferencia de milisegundos a años (aproximado, considerando 365.25 días por año para incluir años bisiestos)
+  const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * lapse);
 
-   return (workedDays / 365) * aguinaldoDays * dailyPay;
+  if (days > 365) {
+    const lastFour = endDate.slice(0, 4);
+    const date = `${lastFour}-01-01`;
+    const propocionalDays = calcularAntiguedad(date, endDate, 1);
+    return propocionalDays;
   }
+  return days;
+}
+export function years(senority: number) {
+  if (senority < 1 || senority >= 2) return " años";
+  return " año";
+}
 
+export function calcularProporcionAguinaldo(
+  workedDays: number,
+  aguinaldoDays: number,
+  dailyPay: number
+): number {
+  return (workedDays / 365) * aguinaldoDays * dailyPay;
+}
 
-  export function calcularProporcionVacaciones(senority: number) {
-    //redondear hacia arriba senority
-    const roundedSenority = Math.ceil(senority);
-    console.log(roundedSenority)
-    switch (roundedSenority) {
-      case 1: return 12;
-      case 2: return 14;
-      case 3: return 16;
-      case 4: return 18;
-      case 5: return 20;
-      case 6:
-      case 7:
-      case 8:
-      case 9:
-      case 10: return 22;
-      case 12:
-      case 13:
-      case 14:
-      case 15:
-      case 16: return 24;
-      case 17:
-      case 18:
-      case 19:
-      case 20:
-      case 21: return 26;
-      case 22:
-      case 23:
-      case 24:
-      case 25: return 28;
-      default: return 0
-  }
-  }
+export function calcularProporcionVacaciones(seniority: number)  {
+    if (seniority >= 1 && seniority < 2) return 12;
+    if (seniority >= 2 && seniority < 3) return 14;
+    if (seniority >= 3 && seniority < 4) return 16;
+    if (seniority >= 4 && seniority < 5) return 18;
+    if (seniority >= 5 && seniority < 6) return 20;
+    if (seniority >= 6 && seniority < 11) return 22;
+    if (seniority >= 12 && seniority < 17) return 24;
+    if (seniority >= 17 && seniority < 22) return 26;
+    if (seniority >= 22 && seniority <= 25) return 28;
+    return 0;
+}
