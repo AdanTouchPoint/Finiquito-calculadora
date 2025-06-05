@@ -55,15 +55,17 @@ export default function SevenStep({
 
   useEffect(() => {
     setVacationsTotal(vacationsPolitics + vacationDebt);
-    setVacationsBonusTotal(vacationsBonus + pendientBonus);
+    
   }, [
-    ,
     vacationsPolitics,
-    vacationsBonus,
-    pendientBonus,
     vacationsDaysDebt,
-    vacationDebt,
+    vacationDebt
   ]);
+
+  useEffect(() => {
+  setVacationsBonusTotal(vacationsBonus + pendientBonus);
+  },[vacationsBonus,
+    pendientBonus])
 
   function reset() {
     window.scrollTo(0, 0);
