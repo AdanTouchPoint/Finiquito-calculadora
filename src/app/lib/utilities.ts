@@ -1,12 +1,4 @@
-function sumarUnDia(fecha: Date) {
-  // Crear una nueva instancia de la fecha para no modificar la original
-  const nuevaFecha = new Date(fecha);
 
-  // Sumar un día (24 horas en milisegundos)
-  nuevaFecha.setDate(nuevaFecha.getDate() + 1);
-
-  return nuevaFecha;
-}
 export function calcularAntiguedad(
   startDate: string,
   endDate: string,
@@ -26,12 +18,9 @@ export function calcularAntiguedad(
     return 0;
   }
 
-  // Sumar un día a cada fecha
-  const startDateModificada = sumarUnDia(startDateObj);
-  const endDateModificada = sumarUnDia(endDateObj);
   // Calcular la diferencia en milisegundos
   const diferenciaMilisegundos: number =
-    endDateModificada.getTime() - startDateModificada.getTime();
+    endDateObj.getTime() - startDateObj.getTime();
 
   // Convertir la diferencia de milisegundos a años (aproximado, considerando 365.25 días por año para incluir años bisiestos)
   const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * lapse);

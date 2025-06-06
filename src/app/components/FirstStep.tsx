@@ -29,8 +29,8 @@ export default function FirstStep({
   };
   useEffect(() => {
     if (!startDate || !endDate) return;
-    setSenority(calcularAntiguedad(startDate, endDate, 365));
-    setWorkedDays(calcularAntiguedad(startDate, endDate, 1));
+    setSenority(calcularAntiguedad(startDate, endDate, 365));          
+    setWorkedDays(calcularAntiguedad(startDate, endDate, 1)+ 1);                  
     console.log(diasTrabajadosVacaciones(startDate, endDate),"dias trbajados");
   }, [startDate, endDate, setSenority, setWorkedDays]);
   // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
