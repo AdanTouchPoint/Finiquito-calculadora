@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { calcularAntiguedad,years } from "../lib/utilities";
+import { calcularAntiguedad,diasTrabajadosVacaciones,years } from "../lib/utilities";
 interface FirstStepProps {
   senority: number;
   setSenority: React.Dispatch<React.SetStateAction<number>>;
@@ -31,6 +31,7 @@ export default function FirstStep({
     if (!startDate || !endDate) return;
     setSenority(calcularAntiguedad(startDate, endDate, 365));
     setWorkedDays(calcularAntiguedad(startDate, endDate, 1));
+    console.log(diasTrabajadosVacaciones(startDate, endDate),"dias trbajados");
   }, [startDate, endDate, setSenority, setWorkedDays]);
   // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
   return (

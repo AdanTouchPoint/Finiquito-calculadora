@@ -26,6 +26,8 @@ export default function FourthStep({
     }
   };
   useEffect(() => {
+    console.log("Aguinaldo Days:", aguinaldoDays);
+    console.log("Worked Days:", workedDays);
     return setAguinaldo(
       calcularProporcionAguinaldo(workedDays, aguinaldoDays, dailyPay)
     );
