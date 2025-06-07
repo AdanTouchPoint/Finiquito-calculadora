@@ -63,9 +63,8 @@ export default function SevenStep({
   ]);
 
   useEffect(() => {
-  setVacationsBonusTotal(vacationsBonus + pendientBonus);
-  },[vacationsBonus,
-    pendientBonus])
+  setVacationsBonusTotal(vacationsBonus);
+  },[vacationsBonus])
 
   function reset() {
     window.scrollTo(0, 0);
@@ -285,10 +284,20 @@ export default function SevenStep({
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="font-medium text-gray-700 text-xs">
-                    Vacaciones:{" "}
+                    Vacaciones Pendientes:{" "}
                   </span>
                   <span className="text-black font-bold">
-                    {vacationsTotal?.toLocaleString("en-US", {
+                    {vacationDebt?.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                    }) || "0.00"}
+                  </span>
+                </div>
+                                <div className="flex justify-between items-center">
+                  <span className="font-medium text-gray-700 text-xs">
+                    Vacaciones Finiquito:{" "}
+                  </span>
+                  <span className="text-black font-bold">
+                    {vacationsPolitics?.toLocaleString("en-US", {
                       minimumFractionDigits: 2,
                     }) || "0.00"}
                   </span>

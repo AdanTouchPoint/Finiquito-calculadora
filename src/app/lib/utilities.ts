@@ -1,3 +1,4 @@
+import exp from "constants";
 
 export function calcularAntiguedad(
   startDate: string,
@@ -91,7 +92,7 @@ const useAniversaryDate = normalizedEndDate > normalizedCurrentAniversary ? norm
 
   // Convertir la diferencia de milisegundos a días
   const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24) ;
-  
+  console.log("Días trabajados:", days);
   return days + 1;
 
 }
@@ -120,3 +121,16 @@ export function calcularProporcionVacaciones(seniority: number) {
   if (seniority >= 22 && seniority <= 25) return 28;
   return 0;
 }
+export function calcularProporcionPrimaVacacional(): number {
+  //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
+  //despues el resultado lo multiplicas por el salario diario que multiplica a la division de prima vacacional entre 100 
+ 
+ 
+  return 0;
+}
+export function calcularVacacionesfiniquito(): number {
+  //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
+  //despues el resultado lo multiplicas por el salario diario
+  return 0;
+}
+                        

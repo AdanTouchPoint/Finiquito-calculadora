@@ -36,7 +36,7 @@ export default function FifthStep({
   pendientBonus,
   setPendientBonus,
 }: FifthStepProps) {
-  const [disable, setDisable] = useState("");
+  const [disable, setDisable] = useState("ley");
   const [disableBonus, setDisableBonus] = useState(true);
   const [policyValue, setPolicyValue] = useState(0);
   const [bonusVacation, setBonusVacation] = useState("");
@@ -109,13 +109,7 @@ export default function FifthStep({
     
   };
   useEffect(() => {
-    if (bonusVacation === "") {
-      return;
-    }
-    if (bonusVacation !== "days") {
-      console.log(supBonusSelect, "aniv");
-      return setPendientBonus(vacationDebt * 0);
-    }
+
     if (bonusSelect === "ley") {
       console.log(bonusVacation, vacationDebt);
       setVacationsBonus(vacationsPolitics * 0.25);
@@ -195,7 +189,7 @@ export default function FifthStep({
           />
         </div>
         {/* Forma de Pago de Prima Vacacional */}
-        <div>
+        <div hidden>
           <label className="font-semibold text-gray-700 mb-2 text-xs">
             ¿Cómo se paga la prima vacacional?
           </label>
@@ -222,46 +216,7 @@ export default function FifthStep({
             min={0}
           />
         </div>
-      <div hidden className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div hidden >
-          <label className="font-semibold text-gray-700 mb-2 text-xs ">
-            Vacaciones proporcionales:
-          </label>
-          <input
-          className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-          disabled
-          value={vacationsPolitics.toFixed(2)}/>
-        </div>
-        {/* Resultados */}
-        <div hidden >
-          <label className="font-semibold text-gray-700 mb-2 text-xs">
-            Prima vacacional proporcional:{" "}
-          </label>
-          <input
-          className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-          disabled
-          value={vacationsBonus.toFixed(2)}/>
-        </div>
-        <div hidden>
-          <label className="font-semibold text-gray-700 mb-2 text-xs">
-            Vacaciones pendientes de disfrutar:{" "}
-          </label>
-          <input
-          className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-          disabled
-          value={vacationDebt.toFixed(2)}/>
-        </div>
-        <div hidden>
-          {/* Vacaciones Adeudadas */}
-      <label className="font-semibold text-gray-700 mb-2 text-xs">
-        Prima vacacional de vacaciones pendientes:{" "}
-      </label>
-      <input
-          className=" w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-          disabled
-          value={pendientBonus.toFixed(2)}/>
-        </div>
-      </div>
+
       
     </div>
   );
