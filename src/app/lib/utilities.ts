@@ -1,4 +1,3 @@
-import exp from "constants";
 
 export function calcularAntiguedad(
   startDate: string,
@@ -121,16 +120,20 @@ export function calcularProporcionVacaciones(seniority: number) {
   if (seniority >= 22 && seniority <= 25) return 28;
   return 0;
 }
-export function calcularProporcionPrimaVacacional(): number {
+export function calcularProporcionPrimaVacacional(vacaciones: number,diasTrabajadosVacaciones: number,dailyPay: number,primaVacacional: number ): number {
   //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
   //despues el resultado lo multiplicas por el salario diario que multiplica a la division de prima vacacional entre 100 
- 
- 
-  return 0;
+ const data = (vacaciones/365) * diasTrabajadosVacaciones;
+ console.log("Data:", data);
+  const payload = data * dailyPay * (primaVacacional / 100);
+  console.log("Payload:", payload);
+  return payload;
 }
-export function calcularVacacionesfiniquito(): number {
+export function calcularVacacionesfiniquito(vacaciones: number, diasTrabajadosVacaciones: number,dailyPay: number ): number {
   //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
   //despues el resultado lo multiplicas por el salario diario
-  return 0;
+  const data = (vacaciones / 365) * diasTrabajadosVacaciones;
+  const payload = data * dailyPay;
+  return payload
 }
                         

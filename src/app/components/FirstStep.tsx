@@ -10,6 +10,8 @@ interface FirstStepProps {
   endDate: string;
   setStartDate: React.Dispatch<React.SetStateAction<string>>;
   setEndDate: React.Dispatch<React.SetStateAction<string>>;
+  diasTrabajadosVacaciones: number;
+  setDiasTrabajadosVacaciones: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function FirstStep({
   senority,
@@ -19,6 +21,7 @@ export default function FirstStep({
   endDate,
   setStartDate,
   setEndDate,
+  setDiasTrabajadosVacaciones
 }: FirstStepProps) {
   // Obtener los valores de las fechas desde los inputs
   const changeStartDate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,8 +34,8 @@ export default function FirstStep({
     if (!startDate || !endDate) return;
     setSenority(calcularAntiguedad(startDate, endDate, 365));          
     setWorkedDays(calcularAntiguedad(startDate, endDate, 1)+ 1);                  
-    console.log(diasTrabajadosVacaciones(startDate, endDate),"dias trbajados");
-  }, [startDate, endDate, setSenority, setWorkedDays]);
+    setDiasTrabajadosVacaciones(diasTrabajadosVacaciones(startDate, endDate) > 1 ? diasTrabajadosVacaciones(startDate, endDate) : 0);
+  }, [startDate, endDate]);
   // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
   return (
     <div className="mb-6">

@@ -23,7 +23,6 @@ interface SevenStepProps {
 }
 export default function SevenStep({
   vacationsBonus,
-  pendientBonus,
   senorityBonus,
   vacationsPolitics,
   aguinaldo,
@@ -55,16 +54,11 @@ export default function SevenStep({
 
   useEffect(() => {
     setVacationsTotal(vacationsPolitics + vacationDebt);
-    
-  }, [
-    vacationsPolitics,
-    vacationsDaysDebt,
-    vacationDebt
-  ]);
+  }, [vacationsPolitics, vacationsDaysDebt, vacationDebt]);
 
   useEffect(() => {
-  setVacationsBonusTotal(vacationsBonus);
-  },[vacationsBonus])
+    setVacationsBonusTotal(vacationsBonus);
+  }, [vacationsBonus]);
 
   function reset() {
     window.scrollTo(0, 0);
@@ -93,8 +87,8 @@ export default function SevenStep({
       const element = contentRef.current;
       const optimalScale = window.devicePixelRatio * 2; // Limitar escala máxima
       const canvas = await html2canvas(element, {
-          logging: true,
-          //scale: optimalScale,
+        logging: true,
+        //scale: optimalScale,
       });
       const imgData = canvas.toDataURL("image/png");
 
@@ -292,7 +286,7 @@ export default function SevenStep({
                     }) || "0.00"}
                   </span>
                 </div>
-                                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center">
                   <span className="font-medium text-gray-700 text-xs">
                     Vacaciones Finiquito:{" "}
                   </span>
@@ -334,7 +328,10 @@ export default function SevenStep({
                 rawpixel.com / www.freepik.es
               </p>
               <p className="text-gray-700 text-xs mt-2 font-medium">
-                *Este cálculo es aproximado. Son sólo cálculos de las percepciones y no se incluyen el cálculo de impuestos (ISR, IMSS, SAR). Se recomienda consultar con un especialista para obtener información exacta.
+                *Este cálculo es aproximado. Son sólo cálculos de las
+                percepciones y no se incluyen el cálculo de impuestos (ISR,
+                IMSS, SAR). Se recomienda consultar con un especialista para
+                obtener información exacta.
               </p>
             </div>
             <div data-html2canvas-ignore>

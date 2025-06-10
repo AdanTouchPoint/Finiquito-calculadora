@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { calcularProporcionVacaciones } from "../lib/utilities";
+import { calcularProporcionVacaciones,calcularProporcionPrimaVacacional, calcularVacacionesfiniquito } from "../lib/utilities";
 
 interface FifthStepProps {
   bonusSelect: string;
@@ -18,13 +18,13 @@ interface FifthStepProps {
   vacationDebt: number;
   pendientBonus: number;
   setPendientBonus: React.Dispatch<React.SetStateAction<number>>;
+  diasTrabajadosVacaciones?: number;
 }
 export default function FifthStep({
   bonusSelect,
   setBonusSelect,
   supBonusSelect,
   setSupBonusSelect,
-  vacationsBonus,
   setVacationsBonus,
   vacationsPolitics,
   setVacationsPolitics,
@@ -33,8 +33,8 @@ export default function FifthStep({
   setVacationsDaysDebt,
   setVacationDebt,
   vacationDebt,
-  pendientBonus,
   setPendientBonus,
+  diasTrabajadosVacaciones
 }: FifthStepProps) {
   const [disable, setDisable] = useState("ley");
   const [disableBonus, setDisableBonus] = useState(true);
@@ -60,8 +60,10 @@ export default function FifthStep({
   
     if (disable === "ley") {
       const vacationProportion = calcularProporcionVacaciones(senority);
-      newVacationsPolitics = (senority - Math.floor(senority)) * vacationProportion * dailyPay;
+     // newVacationsPolitics = (senority - Math.floor(senority)) * vacationProportion * dailyPay;
       //newVacationsBonus = newVacationsPolitics * 0.25;
+      //newVacationsPolitics = calcularProporcionPrimaVacacional(vacationProportion, diasTrabajadosVacaciones, dailyPay, 0.25); 
+      newVacationsPolitics = calcularVacacionesfiniquito(vacationProportion, diasTrabajadosVacaciones ?? 0, dailyPay);
     } 
     if(disable === "sup") {
       newVacationsPolitics = (senority - Math.floor(senority)) * policyValue * dailyPay;
@@ -112,7 +114,8 @@ export default function FifthStep({
 
     if (bonusSelect === "ley") {
       console.log(bonusVacation, vacationDebt);
-      setVacationsBonus(vacationsPolitics * 0.25);
+      const vacationProportion = calcularProporcionVacaciones(senority);
+      setVacationsBonus(calcularProporcionPrimaVacacional(vacationProportion, diasTrabajadosVacaciones ?? 0, dailyPay, 25));
       setPendientBonus(vacationDebt * 0.25);
       return 
     } else {
