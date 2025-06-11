@@ -123,17 +123,26 @@ export function calcularProporcionVacaciones(seniority: number) {
 export function calcularProporcionPrimaVacacional(vacaciones: number,diasTrabajadosVacaciones: number,dailyPay: number,primaVacacional: number ): number {
   //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
   //despues el resultado lo multiplicas por el salario diario que multiplica a la division de prima vacacional entre 100 
+  console.log("Dias trabajados vacaciones:", diasTrabajadosVacaciones);
+  console.log("Vacaciones:", vacaciones);
+  console.log("Salario diario:", dailyPay);
+  console.log("Prima vacacional:", primaVacacional);
  const data = (vacaciones/365) * diasTrabajadosVacaciones;
- console.log("Data:", data);
+ console.log("Data rpima vacacional:", data);
   const payload = data * dailyPay * (primaVacacional / 100);
-  console.log("Payload:", payload);
+  console.log("total prima vacacional:", payload);
   return payload;
 }
 export function calcularVacacionesfiniquito(vacaciones: number, diasTrabajadosVacaciones: number,dailyPay: number ): number {
   //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
   //despues el resultado lo multiplicas por el salario diario
+  console.log("Dias trabajados vacaciones:", diasTrabajadosVacaciones);
+  console.log("Vacaciones:", vacaciones);
+  console.log("Salario diario:", dailyPay);
   const data = (vacaciones / 365) * diasTrabajadosVacaciones;
+  console.log("Data vacaciones finiquito:", data);
   const payload = data * dailyPay;
+  console.log("total vacaciones finiquito:", payload);
   return payload
 }
                         
