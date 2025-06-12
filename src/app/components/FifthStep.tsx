@@ -64,7 +64,6 @@ export default function FifthStep({
   
     if (disable === "ley") {
       const vacationProportion = calcularProporcionVacaciones(senority);
-      console.log(calcularSDI(dailyPay, 15, 25, vacationProportion));
       setSdi(calcularSDI(dailyPay, 15, 25, vacationProportion));
      // newVacationsPolitics = (senority - Math.floor(senority)) * vacationProportion * dailyPay;
       //newVacationsBonus = newVacationsPolitics * 0.25;
@@ -113,7 +112,6 @@ export default function FifthStep({
     dailyPay: number
   ): void => {
     const debt = parseFloat(e.target.value);
-      console.log(debt);
       setVacationsDaysDebt(debt);
       setVacationDebt(debt * dailyPay);
     

@@ -262,6 +262,7 @@ export default function SevenStep({
                   </span>
                   <span className="text-black font-bold">
                     {totalDebt?.toLocaleString("en-US", {
+                      maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                     }) || "0.00"}
                   </span>
@@ -272,7 +273,8 @@ export default function SevenStep({
                   </span>
                   <span className="text-black font-bold">
                     {aguinaldo?.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
+                     maximumFractionDigits: 2,
+                     minimumFractionDigits: 2,
                     }) || "0.00"}
                   </span>
                 </div>
@@ -282,7 +284,8 @@ export default function SevenStep({
                   </span>
                   <span className="text-black font-bold">
                     {vacationDebt?.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
                     }) || "0.00"}
                   </span>
                 </div>
@@ -292,7 +295,8 @@ export default function SevenStep({
                   </span>
                   <span className="text-black font-bold">
                     {vacationsPolitics?.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
                     }) || "0.00"}
                   </span>
                 </div>
@@ -302,7 +306,8 @@ export default function SevenStep({
                   </span>
                   <span defaultValue={0} className="text-black font-bold">
                     {vacationsBonusTotal?.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
                     }) || "0.00"}
                   </span>
                 </div>
@@ -312,7 +317,8 @@ export default function SevenStep({
                   </span>
                   <span defaultValue={0} className="text-black font-bold">
                     {senorityBonus?.toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
                     }) || "0.00"}
                   </span>
                 </div>
