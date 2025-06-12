@@ -4,21 +4,24 @@ interface SixStepProps {
     senority: number;
     dailyPay: number;
     setSenorityBonus: React.Dispatch<React.SetStateAction<number>>;
+    sdi: number;
 }
-export default function SixStep({senority, dailyPay,setSenorityBonus}: SixStepProps) {
+export default function SixStep({senority, dailyPay,setSenorityBonus,sdi}: SixStepProps) {
     
     useEffect(() => {
-        const receivesSeniorityBonus = (senority: number, dailyPay: number) => {
+        const receivesSeniorityBonus = (senority: number, sdi: number) => {
             if (senority > 15) {
                 const minimumSalary = 278.8;
-                const payload =  minimumSalary * 2 
-               return dailyPay > payload ? setSenorityBonus(minimumSalary * 12 * senority) : setSenorityBonus(dailyPay * 12 * senority);
+                const payload =  minimumSalary * 2
+                const senorityData = senority * 12
+                console.log("Seniority Data:", senorityData);
+               return sdi > payload ? setSenorityBonus(payload *senorityData) : setSenorityBonus(sdi * senorityData);
             } else {
                 return false;
             }
         };
-        receivesSeniorityBonus(senority,dailyPay)
-    }, [senority,dailyPay,setSenorityBonus]);
+        receivesSeniorityBonus(senority,sdi)
+    }, [senority,dailyPay,setSenorityBonus,sdi]);
     return(
         <div >
             <h2 className="text-red-600 text-lg font-semibold mb-3">Prima de antigüedad</h2>

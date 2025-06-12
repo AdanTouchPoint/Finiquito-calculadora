@@ -114,10 +114,16 @@ export function calcularProporcionVacaciones(seniority: number) {
   if (seniority >= 3 && seniority < 4) return 16;
   if (seniority >= 4 && seniority < 5) return 18;
   if (seniority >= 5 && seniority < 6) return 20;
-  if (seniority >= 6 && seniority < 11) return 22;
-  if (seniority >= 12 && seniority < 17) return 24;
-  if (seniority >= 17 && seniority < 22) return 26;
-  if (seniority >= 22 && seniority <= 25) return 28;
+  if (seniority >= 6 && seniority < 7) return 22;
+  if (seniority >= 7 && seniority < 12) return 24;
+  if (seniority >= 12 && seniority < 17) return 26;
+  if (seniority >= 17 && seniority < 21) return 28;
+  if (seniority >= 21 && seniority < 26) return 30;
+  if (seniority >= 26 && seniority < 31) return 32;
+  if (seniority >= 31 && seniority < 36) return 34;
+  if (seniority >= 36 && seniority < 41) return 36;
+  if (seniority >= 41 && seniority < 46) return 38;
+  if (seniority >= 46 && seniority < 51) return 40;
   return 0;
 }
 export function calcularProporcionPrimaVacacional(vacaciones: number,diasTrabajadosVacaciones: number,dailyPay: number,primaVacacional: number ): number {
@@ -145,4 +151,16 @@ export function calcularVacacionesfiniquito(vacaciones: number, diasTrabajadosVa
   console.log("total vacaciones finiquito:", payload);
   return payload
 }
-                        
+
+export function calcularSDI(dailyPay: number, aguinaldoDays: number, supBonusSelect: number, vacationDays: number): number {
+  //salario diario + ( salario dario  * (dias de aguinaldo / 365)+ ( salario dario  * (dias de vacacion / 365) + ( salario dario  * (prima vacacional / 365))
+  //disable,policyValue
+  //bopnusSelect, 
+  const aguinaldoData =  dailyPay * ( aguinaldoDays / 365)
+  const vacationData = dailyPay * (vacationDays / 365) * (supBonusSelect / 100)
+  const sdi = dailyPay + aguinaldoData + vacationData ;
+  console.log("aguinaldoData:", aguinaldoData);
+  console.log("vacationData:", vacationData);
+  console.log("datasdi:", sdi);
+  return sdi ? sdi : 0;
+}

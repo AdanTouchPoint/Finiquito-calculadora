@@ -28,6 +28,7 @@ export default function Home() {
   const [vacationsBonus, setVacationsBonus] = useState(0);
   const [supBonusSelect, setSupBonusSelect] = useState(0);
   const [bonusSelect, setBonusSelect] = useState("");
+  const [sdi,setSdi] = useState(0);
   return (
     <div className="bg-[#F5F6F8]">
       <div className="max-w-[1200px] mx-auto bg-[#F5F6F8]  p-8">
@@ -82,11 +83,14 @@ export default function Home() {
             bonusSelect={bonusSelect}
             setBonusSelect={setBonusSelect}
             diasTrabajadosVacaciones={diasTrabajadosVacaciones}
+            setSdi={setSdi}
+            aguinaldoDays={aguinaldoDays}
           />
           <SixStep
             senority={senority}
             dailyPay={dailyPay}
             setSenorityBonus={setSenorityBonus}
+            sdi={sdi}
           />
         </div>
         <SevenStep
