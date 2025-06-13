@@ -43,15 +43,11 @@ export default function FifthStep({
   const [disable, setDisable] = useState("ley");
   const [disableBonus, setDisableBonus] = useState(true);
   const [policyValue, setPolicyValue] = useState(0);
- // const [bonusVacation, setBonusVacation] = useState("");
-  //const [bonus, setBonus] = useState(0);
   const lawPolicy = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
     if (e.target.value === "sup") {
       setDisable(e.target.value);
-
-
     }
     if (e.target.value === "ley") {
       setDisable(e.target.value);
@@ -60,25 +56,16 @@ export default function FifthStep({
 
   useEffect(() => {
     let newVacationsPolitics = 0;
-    //let newVacationsBonus = 0;
-  
     if (disable === "ley") {
       const vacationProportion = calcularProporcionVacaciones(senority);
       setSdi(calcularSDI(dailyPay, 15, 25, vacationProportion));
-     // newVacationsPolitics = (senority - Math.floor(senority)) * vacationProportion * dailyPay;
-      //newVacationsBonus = newVacationsPolitics * 0.25;
-      //newVacationsPolitics = calcularProporcionPrimaVacacional(vacationProportion, diasTrabajadosVacaciones, dailyPay, 0.25); 
       newVacationsPolitics = calcularVacacionesfiniquito(vacationProportion, diasTrabajadosVacaciones ?? 0, dailyPay);
     } 
     if(disable === "sup") {
-      //newVacationsPolitics = (senority - Math.floor(senority)) * policyValue * dailyPay;
       newVacationsPolitics = calcularVacacionesfiniquito(policyValue, diasTrabajadosVacaciones ?? 0, dailyPay);
-      //newVacationsBonus = (newVacationsPolitics * supBonusSelect) / 100;
       setSdi(calcularSDI(dailyPay, aguinaldoDays ?? 0, supBonusSelect ?? 0, policyValue ?? 0));
     }
-  
     setVacationsPolitics(newVacationsPolitics);
-  //setVacationsBonus(newVacationsBonus);
   }, [disable, senority, dailyPay, policyValue, diasTrabajadosVacaciones]); 
 
 
@@ -126,9 +113,6 @@ export default function FifthStep({
       return 
     } 
     else if (bonusSelect === "sup") {
-      //policyValue
-      //supBonusSelect
-      //setVacationsBonus((vacationsPolitics * supBonusSelect)/100);
       setSdi(calcularSDI(dailyPay, aguinaldoDays ?? 0, supBonusSelect ?? 0, policyValue ?? 0));
       setVacationsBonus(calcularProporcionPrimaVacacional(policyValue, diasTrabajadosVacaciones ?? 0, dailyPay, supBonusSelect));
       return setPendientBonus((vacationDebt * supBonusSelect) / 100);
