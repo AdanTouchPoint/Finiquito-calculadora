@@ -304,8 +304,8 @@ export default function SevenStep({
                   <span className="font-medium text-gray-700 text-xs">
                     Prima vacacional:{" "}
                   </span>
-                  <span defaultValue={0} className="text-black font-bold">
-                    {vacationsBonusTotal?.toLocaleString("en-US", {
+                  <span  className="text-black font-bold">
+                    {vacationsBonus?.toLocaleString("en-US", {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2
                     }) || "0.00"}

@@ -28,7 +28,6 @@ export default function FifthStep({
   supBonusSelect,
   setSupBonusSelect,
   setVacationsBonus,
-  vacationsPolitics,
   setVacationsPolitics,
   senority,
   dailyPay,
@@ -43,6 +42,7 @@ export default function FifthStep({
   const [disable, setDisable] = useState("ley");
   const [disableBonus, setDisableBonus] = useState(true);
   const [policyValue, setPolicyValue] = useState(0);
+  
   const lawPolicy = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
@@ -58,6 +58,7 @@ export default function FifthStep({
     let newVacationsPolitics = 0;
     if (disable === "ley") {
       const vacationProportion = calcularProporcionVacaciones(senority);
+      setPolicyValue(vacationProportion)
       setSdi(calcularSDI(dailyPay, 15, 25, vacationProportion));
       newVacationsPolitics = calcularVacacionesfiniquito(vacationProportion, diasTrabajadosVacaciones ?? 0, dailyPay);
     } 
@@ -72,27 +73,20 @@ export default function FifthStep({
 
   const getLawVacationsBonus = (
     e: React.ChangeEvent<HTMLSelectElement>,
-    vacationsPolitics: number
   ): void => {
-    if (!vacationsPolitics || vacationsPolitics < 0) return;
+    console.log(e.target.value)
     setBonusSelect(e.target.value);
     if (e.target.value === "sup") {
       setDisableBonus(false);
-      return;
     }
     if (e.target.value === "ley") {
       setDisableBonus(true);
-      //setVacationsBonus(vacationsPolitics * 0.25);
     }
   };
   const getSupVacationsBonus = (
     e: React.ChangeEvent<HTMLInputElement>,
   ): void => {
- 
-      //setBonus(|| 0 );
-      setSupBonusSelect(parseFloat(e.target.value));
-      setDisableBonus(false);
-      
+ setSupBonusSelect(parseFloat(e.target.value));
   };
   const getVacationDebt = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -104,7 +98,6 @@ export default function FifthStep({
     
   };
   useEffect(() => {
-
     if (bonusSelect === "ley") {
       const vacationProportion = calcularProporcionVacaciones(senority);
       setSdi(calcularSDI(dailyPay, 15, 25, vacationProportion));
@@ -112,13 +105,14 @@ export default function FifthStep({
       setPendientBonus(vacationDebt * 0.25);
       return 
     } 
-    else if (bonusSelect === "sup") {
+   if (bonusSelect === "sup") {
+     
       setSdi(calcularSDI(dailyPay, aguinaldoDays ?? 0, supBonusSelect ?? 0, policyValue ?? 0));
       setVacationsBonus(calcularProporcionPrimaVacacional(policyValue, diasTrabajadosVacaciones ?? 0, dailyPay, supBonusSelect));
-      return setPendientBonus((vacationDebt * supBonusSelect) / 100);
+      setPendientBonus((vacationDebt * supBonusSelect) / 100);
+      return  
     }
   }, [
-    ,
     vacationDebt,
     bonusSelect,
     supBonusSelect,
@@ -163,7 +157,7 @@ export default function FifthStep({
             Política de Prima Vacacional
           </label>
           <select
-            onChange={(e) => getLawVacationsBonus(e, vacationsPolitics)}
+            onChange={(e) => getLawVacationsBonus(e)}
             id="holidaysPay"
             className="w-full border border-gray-300 rounded-lg p-3 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
           >

@@ -156,6 +156,7 @@ export function calcularSDI(dailyPay: number, aguinaldoDays: number, supBonusSel
   //salario diario + ( salario dario  * (dias de aguinaldo / 365)+ ( salario dario  * (dias de vacacion / 365) + ( salario dario  * (prima vacacional / 365))
   //disable,policyValue
   //bopnusSelect, 
+  console.log(vacationDays)
   const aguinaldoData =  dailyPay * ( aguinaldoDays / 365)
   const vacationData = dailyPay * (vacationDays / 365) * (supBonusSelect / 100)
   const sdi = dailyPay + aguinaldoData + vacationData ;
