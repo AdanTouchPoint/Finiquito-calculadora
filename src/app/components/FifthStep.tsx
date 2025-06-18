@@ -176,7 +176,7 @@ export default function FifthStep({
             className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
             placeholder="Ingrese el porcentaje"
             disabled={disableBonus}
-            defaultValue={30}
+            defaultValue={0}
             min={0}
           />
         </div>

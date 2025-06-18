@@ -94,6 +94,8 @@ export default function Home() {
           />
         </div>
         <SevenStep
+        workedDays={workedDays}
+        diasTrabajadosVacaciones={diasTrabajadosVacaciones}
           dailyPay={dailyPay}
           senority={senority}
           aguinaldoDays={aguinaldoDays}
