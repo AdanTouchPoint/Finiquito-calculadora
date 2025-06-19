@@ -109,21 +109,21 @@ export function calcularProporcionAguinaldo(
 }
 
 export function calcularProporcionVacaciones(seniority: number) {
-  if (seniority >= 1 && seniority < 2) return 12;
-  if (seniority >= 2 && seniority < 3) return 14;
-  if (seniority >= 3 && seniority < 4) return 16;
-  if (seniority >= 4 && seniority < 5) return 18;
-  if (seniority >= 5 && seniority < 6) return 20;
-  if (seniority >= 6 && seniority < 7) return 22;
-  if (seniority >= 7 && seniority < 12) return 24;
-  if (seniority >= 12 && seniority < 17) return 26;
-  if (seniority >= 17 && seniority < 21) return 28;
-  if (seniority >= 21 && seniority < 26) return 30;
-  if (seniority >= 26 && seniority < 31) return 32;
-  if (seniority >= 31 && seniority < 36) return 34;
-  if (seniority >= 36 && seniority < 41) return 36;
-  if (seniority >= 41 && seniority < 46) return 38;
-  if (seniority >= 46 && seniority < 51) return 40;
+  if (seniority >= 0 && seniority <= 1) return 12;
+  if (seniority > 1 && seniority <= 2) return 14;
+  if (seniority > 2 && seniority <= 3) return 16;
+  if (seniority > 3 && seniority <= 4) return 18;
+  if (seniority > 4 && seniority <= 5) return 20;
+  if (seniority > 5 && seniority <= 6) return 22;
+  if (seniority > 6 && seniority <= 11) return 24;
+  if (seniority > 11 && seniority <= 16) return 26;
+  if (seniority > 16 && seniority <= 20) return 28;
+  if (seniority > 20 && seniority <= 25) return 30;
+  if (seniority > 25 && seniority <= 30) return 32;
+  if (seniority > 30 && seniority <= 35) return 34;
+  if (seniority > 35 && seniority <= 40) return 36;
+  if (seniority > 40 && seniority <= 45) return 38;
+  if (seniority > 45 && seniority <= 50) return 40;
   return 0;
 }
 export function calcularProporcionPrimaVacacional(vacaciones: number,diasTrabajadosVacaciones: number,dailyPay: number,primaVacacional: number ): number {
