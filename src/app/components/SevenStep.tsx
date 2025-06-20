@@ -14,12 +14,11 @@ interface SevenStepProps {
   dailyPay: number;
   senority: number;
   aguinaldoDays: number;
-  debt: number;
   vacationDebt: number;
   vacationsDaysDebt: number;
   bonusSelect: string;
   supBonusSelect: number;
-  totalDebt: number;
+
   diasTrabajadosVacaciones?: number;
   workedDays?: number;
 }
@@ -31,12 +30,11 @@ export default function SevenStep({
   dailyPay,
   senority,
   aguinaldoDays,
-  debt,
   vacationDebt,
   vacationsDaysDebt,
   bonusSelect,
   supBonusSelect,
-  totalDebt,
+
   workedDays,
   diasTrabajadosVacaciones
 }: SevenStepProps) {
@@ -69,14 +67,12 @@ export default function SevenStep({
     window.location.reload();
   }
   const calculateTotal = (
-    totalDebt: number,
     aguinaldo: number,
     vacationsTotal: number,
     vacationsBonusTotal: number,
     senorityBonus: number
   ) => {
     return (
-      totalDebt +
       aguinaldo +
       vacationsTotal +
       vacationsBonusTotal +
@@ -207,15 +203,8 @@ export default function SevenStep({
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Pagos pendientes
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <label className="font-medium text-gray-700 text-xs">
-                Días pendientes de pago:{" "}
-              </label>
-              <input
-                readOnly
-                className="bg-gray-100 text-black font-semibold text-right border border-gray-300 rounded-lg p-2 mb-0 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                value={debt.toFixed(2) + " días"}
-              />
+            <div  className="grid grid-cols-1 md:grid-cols-2 gap-2">
+
               <label className="font-medium text-gray-700 text-xs">
                 Días de vacaciones pendientes de pago:
               </label>
@@ -242,7 +231,6 @@ export default function SevenStep({
                 </h2>
                 <div className="text-red-500 font-bold text-3xl">
                   {calculateTotal(
-                    totalDebt,
                     aguinaldo,
                     vacationsTotal,
                     vacationsBonusTotal,
@@ -327,7 +315,6 @@ export default function SevenStep({
       <span className="text-gray-700 text-xs text-center w-1/3"></span>
       <span className="text-black font-bold text-right w-1/3">
         {(
-          (totalDebt || 0) +
           (aguinaldo || 0) +
           (vacationDebt || 0) +
           (vacationsPolitics || 0) +

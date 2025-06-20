@@ -12,8 +12,7 @@ export default function Home() {
   const [senority, setSenority] = useState(0);
   const [dailyPay, setDailyPay] = useState(0);
   const [salary, setSalary] = useState(0);
-  const [debt, setDebt] = useState(0);
-  const [totalDebt, setTotalDebt] = useState(0);
+
   const [period, setPeriod] = useState(0);
   const [workedDays, setWorkedDays] = useState(0);
   const [aguinaldo, setAguinaldo] = useState(0);
@@ -51,10 +50,6 @@ export default function Home() {
             setDailyPay={setDailyPay}
             salary={salary}
             setSalary={setSalary}
-            debt={debt}
-            setDebt={setDebt}
-            totalDebt={totalDebt}
-            setTotalDebt={setTotalDebt}
             period={period}
             setPeriod={setPeriod}
           />
@@ -99,10 +94,9 @@ export default function Home() {
           dailyPay={dailyPay}
           senority={senority}
           aguinaldoDays={aguinaldoDays}
-          debt={debt}
           vacationsDaysDebt={vacationsDaysDebt}
           vacationDebt={vacationDebt}
-          totalDebt={totalDebt}
+
           aguinaldo={aguinaldo}
           vacationsPolitics={vacationsPolitics}
           senorityBonus={senorityBonus}
