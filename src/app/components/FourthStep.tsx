@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { calcularProporcionAguinaldo } from "../lib/utilities";
+import { calcularProporcionAguinaldo,calcularDiasProporcionales } from "../lib/utilities";
 interface FourthStepProps {
   aguinaldoDays: number;
   setAguinaldoDays: React.Dispatch<React.SetStateAction<number>>;
@@ -8,6 +8,7 @@ interface FourthStepProps {
   dailyPay: number;
   aguinaldo: number;
   setAguinaldo: React.Dispatch<React.SetStateAction<number>>;
+  setPorporcionAguinaldoDays?: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function FourthStep({
   aguinaldoDays,
@@ -16,6 +17,7 @@ export default function FourthStep({
   dailyPay,
   aguinaldo,
   setAguinaldo,
+  setPorporcionAguinaldoDays,
 }: FourthStepProps) {
   const [disableInput, setDisableInput] = useState<string>("");
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -26,6 +28,11 @@ export default function FourthStep({
     }
   };
   useEffect(() => {
+    if (disableInput === "ley") {
+      setPorporcionAguinaldoDays(calcularDiasProporcionales(15, workedDays));
+    } else {
+      setPorporcionAguinaldoDays(calcularDiasProporcionales(aguinaldoDays, workedDays))
+    }
     return setAguinaldo(
       calcularProporcionAguinaldo(workedDays, aguinaldoDays, dailyPay)
     );

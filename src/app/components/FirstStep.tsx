@@ -36,7 +36,6 @@ export default function FirstStep({
     setWorkedDays(calcularAntiguedad(startDate, endDate, 1)+ 1);                  
     setDiasTrabajadosVacaciones(diasTrabajadosVacaciones(startDate, endDate) > 1 ? diasTrabajadosVacaciones(startDate, endDate) : 0);
   }, [startDate, endDate]);
-  // Escuchar los cambios en los inputs de fecha para recalcular la antigüedad
   return (
     <div className="mb-6">
       <h2 className="text-red-600 text-lg font-bold">Fechas</h2>

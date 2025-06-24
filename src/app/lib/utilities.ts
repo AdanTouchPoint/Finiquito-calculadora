@@ -69,8 +69,7 @@ const finishDate = crearAniversario(
   endDateObj.getUTCMonth(),
   endDateObj.getUTCDate() + 1
 );
-console.log("Current Aniversary:", currentAniversary);
-  console.log("Last Aniversary:", lastAniversary);
+
 // Función para normalizar fechas a UTC (día completo sin horas)
 function normalizeToUTCDate(date: Date): Date {
   return new Date(Date.UTC(
@@ -88,10 +87,8 @@ const useAniversaryDate = normalizedEndDate > normalizedCurrentAniversary ? norm
   // Calcular la diferencia en milisegundos
   const diferenciaMilisegundos: number =
     normalizedEndDate.getTime() - useAniversaryDate.getTime();
-
   // Convertir la diferencia de milisegundos a días
   const days = diferenciaMilisegundos / (1000 * 60 * 60 * 24) ;
-  console.log("Días trabajados:", days);
   return days + 1;
 
 }
@@ -126,6 +123,13 @@ export function calcularProporcionVacaciones(seniority: number) {
   if (seniority > 45 && seniority <= 50) return 40;
   return 0;
 }
+export function calcularDiasProporcionales(vacaciones: number,diasTrabajadosVacaciones: number) {
+  //primero divides dias de vacaciones / 365 x dias laborados
+  //despues el resultado lo multiplicas por 365
+  const data = (vacaciones / 365) * diasTrabajadosVacaciones;
+  return data 
+  
+}
 export function calcularProporcionPrimaVacacional(vacaciones: number,diasTrabajadosVacaciones: number,dailyPay: number,primaVacacional: number ): number {
   //primero divides dias de vacaciones / 365 x prima vacacional (dias laborados)
   //despues el resultado lo multiplicas por el salario diario que multiplica a la division de prima vacacional entre 100 
@@ -145,12 +149,8 @@ export function calcularSDI(dailyPay: number, aguinaldoDays: number, supBonusSel
   //salario diario + ( salario dario  * (dias de aguinaldo / 365)+ ( salario dario  * (dias de vacacion / 365) + ( salario dario  * (prima vacacional / 365))
   //disable,policyValue
   //bopnusSelect, 
-  console.log(vacationDays)
   const aguinaldoData =  dailyPay * ( aguinaldoDays / 365)
   const vacationData = dailyPay * (vacationDays / 365) * (supBonusSelect / 100)
   const sdi = dailyPay + aguinaldoData + vacationData ;
-  console.log("aguinaldoData:", aguinaldoData);
-  console.log("vacationData:", vacationData);
-  console.log("datasdi:", sdi);
   return sdi ? sdi : 0;
 }

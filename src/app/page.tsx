@@ -12,7 +12,9 @@ export default function Home() {
   const [senority, setSenority] = useState(0);
   const [dailyPay, setDailyPay] = useState(0);
   const [salary, setSalary] = useState(0);
-
+  const [proporcionVacationDays, setProporcionVacationDays] = useState(0);
+  const [proporcionVacationBonusDays, setProporcionVacationBonusDays] = useState(0);
+  const [porporcionAguinaldoDays, setPorporcionAguinaldoDays] = useState(0);
   const [period, setPeriod] = useState(0);
   const [workedDays, setWorkedDays] = useState(0);
   const [aguinaldo, setAguinaldo] = useState(0);
@@ -60,6 +62,7 @@ export default function Home() {
             setAguinaldo={setAguinaldo}
             dailyPay={dailyPay}
             workedDays={workedDays}
+            setPorporcionAguinaldoDays={setPorporcionAguinaldoDays}
           />
           <FifthStep
             senority={senority}
@@ -80,6 +83,8 @@ export default function Home() {
             diasTrabajadosVacaciones={diasTrabajadosVacaciones}
             setSdi={setSdi}
             aguinaldoDays={aguinaldoDays}
+            setProporcionVacationDays={setProporcionVacationDays}
+            setProporcionVacationBonusDays={setProporcionVacationBonusDays}
           />
           <SixStep
             senority={senority}
@@ -89,14 +94,14 @@ export default function Home() {
           />
         </div>
         <SevenStep
-        workedDays={workedDays}
-        diasTrabajadosVacaciones={diasTrabajadosVacaciones}
           dailyPay={dailyPay}
           senority={senority}
           aguinaldoDays={aguinaldoDays}
           vacationsDaysDebt={vacationsDaysDebt}
           vacationDebt={vacationDebt}
-
+          proporcionVacationDays={proporcionVacationDays}
+          proporcionVacationBonusDays={proporcionVacationBonusDays}
+          proporcionAguinaldoDays={porporcionAguinaldoDays}
           aguinaldo={aguinaldo}
           vacationsPolitics={vacationsPolitics}
           senorityBonus={senorityBonus}

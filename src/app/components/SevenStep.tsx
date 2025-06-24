@@ -18,9 +18,9 @@ interface SevenStepProps {
   vacationsDaysDebt: number;
   bonusSelect: string;
   supBonusSelect: number;
-
-  diasTrabajadosVacaciones?: number;
-  workedDays?: number;
+  proporcionVacationDays?: number;
+  proporcionVacationBonusDays?: number;
+  proporcionAguinaldoDays?: number;
 }
 export default function SevenStep({
   vacationsBonus,
@@ -34,9 +34,10 @@ export default function SevenStep({
   vacationsDaysDebt,
   bonusSelect,
   supBonusSelect,
+  proporcionVacationDays,
+  proporcionVacationBonusDays,
+  proporcionAguinaldoDays
 
-  workedDays,
-  diasTrabajadosVacaciones
 }: SevenStepProps) {
   const [bonusVacationSenority, setBonusVacationSenority] = useState(0);
   const [vacationsTotal, setVacationsTotal] = useState(0);
@@ -254,7 +255,7 @@ export default function SevenStep({
   <div className="w-full">
     <div className="flex justify-between items-center mb-1">
       <span className="font-medium text-gray-700 text-xs w-1/3">Aguinaldo:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{workedDays}</span>
+      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{proporcionAguinaldoDays?.toFixed(2)}</span>
       <span className="text-black font-bold text-right w-1/3">
         {aguinaldo?.toLocaleString("en-US", {
           maximumFractionDigits: 2,
@@ -276,7 +277,7 @@ export default function SevenStep({
     
     <div className="flex justify-between items-center mb-1">
       <span className="font-medium text-gray-700 text-xs w-1/3">Vacaciones Finiquito:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{diasTrabajadosVacaciones}</span>
+      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{proporcionVacationDays?.toFixed(2)}</span>
       <span className="text-black font-bold text-right w-1/3">
         {vacationsPolitics?.toLocaleString("en-US", {
           maximumFractionDigits: 2,
@@ -288,7 +289,7 @@ export default function SevenStep({
    
     <div className="flex justify-between items-center mb-1">
       <span className="font-medium text-gray-700 text-xs w-1/3">Prima vacacional:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{diasTrabajadosVacaciones}</span>
+      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{proporcionVacationBonusDays?.toFixed(2)}</span>
       <span className="text-black font-bold text-right w-1/3">
         {vacationsBonus?.toLocaleString("en-US", {
           maximumFractionDigits: 2,
