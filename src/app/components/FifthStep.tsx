@@ -21,8 +21,8 @@ interface FifthStepProps {
   diasTrabajadosVacaciones?: number;
   setSdi: React.Dispatch<React.SetStateAction<number>>;
   aguinaldoDays?: number;
-  setProporcionVacationDays?: React.Dispatch<React.SetStateAction<number>>;
-  setProporcionVacationBonusDays?: React.Dispatch<React.SetStateAction<number>>;
+  setProporcionVacationDays: React.Dispatch<React.SetStateAction<number>>;
+  setProporcionVacationBonusDays: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function FifthStep({
   bonusSelect,

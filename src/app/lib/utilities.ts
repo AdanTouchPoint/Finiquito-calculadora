@@ -123,11 +123,11 @@ export function calcularProporcionVacaciones(seniority: number) {
   if (seniority > 45 && seniority <= 50) return 40;
   return 0;
 }
-export function calcularDiasProporcionales(vacaciones: number,diasTrabajadosVacaciones: number) {
+export function calcularDiasProporcionales(vacaciones: number,diasTrabajadosVacaciones: number): number {
   //primero divides dias de vacaciones / 365 x dias laborados
   //despues el resultado lo multiplicas por 365
   const data = (vacaciones / 365) * diasTrabajadosVacaciones;
-  return data 
+  return data ? data : 0;
   
 }
 export function calcularProporcionPrimaVacacional(vacaciones: number,diasTrabajadosVacaciones: number,dailyPay: number,primaVacacional: number ): number {
@@ -146,11 +146,10 @@ export function calcularVacacionesfiniquito(vacaciones: number, diasTrabajadosVa
 }
 
 export function calcularSDI(dailyPay: number, aguinaldoDays: number, supBonusSelect: number, vacationDays: number): number {
-  //salario diario + ( salario dario  * (dias de aguinaldo / 365)+ ( salario dario  * (dias de vacacion / 365) + ( salario dario  * (prima vacacional / 365))
-  //disable,policyValue
-  //bopnusSelect, 
+
   const aguinaldoData =  dailyPay * ( aguinaldoDays / 365)
   const vacationData = dailyPay * (vacationDays / 365) * (supBonusSelect / 100)
   const sdi = dailyPay + aguinaldoData + vacationData ;
+  console.log(sdi, "sdi");
   return sdi ? sdi : 0;
 }

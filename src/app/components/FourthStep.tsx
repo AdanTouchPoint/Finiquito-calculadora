@@ -8,7 +8,7 @@ interface FourthStepProps {
   dailyPay: number;
   aguinaldo: number;
   setAguinaldo: React.Dispatch<React.SetStateAction<number>>;
-  setPorporcionAguinaldoDays?: React.Dispatch<React.SetStateAction<number>>;
+  setPorporcionAguinaldoDays: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function FourthStep({
   aguinaldoDays,
@@ -29,7 +29,7 @@ export default function FourthStep({
   };
   useEffect(() => {
     if (disableInput === "ley") {
-      setPorporcionAguinaldoDays(calcularDiasProporcionales(15, workedDays));
+      setPorporcionAguinaldoDays(calcularDiasProporcionales(15, workedDays))
     } else {
       setPorporcionAguinaldoDays(calcularDiasProporcionales(aguinaldoDays, workedDays))
     }

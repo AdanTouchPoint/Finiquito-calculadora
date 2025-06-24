@@ -11,9 +11,10 @@ export default function SixStep({senority, dailyPay,setSenorityBonus,sdi}: SixSt
     useEffect(() => {
         const receivesSeniorityBonus = (senority: number, sdi: number) => {
             if (senority > 15) {
-                const minimumSalary = 278.8;
+                const minimumSalary = 278.80;
                 const payload =  minimumSalary * 2
                 const senorityData = senority * 12
+                console.log("Seniority Data: ", senorityData);
                return sdi > payload ? setSenorityBonus(payload *senorityData) : setSenorityBonus(sdi * senorityData);
             } else {
                 return false;
