@@ -266,7 +266,7 @@ export default function SevenStep({
     
     <div className="flex justify-between items-center mb-1">
       <span className="font-medium text-gray-700 text-xs w-1/3">Vacaciones Pendientes:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3"></span>
+      <span className="text-gray-700 text-xs text-center w-1/3">{vacationsDaysDebt.toFixed(2)}</span>
       <span className="text-black font-bold text-right w-1/3">
         {vacationDebt?.toLocaleString("en-US", {
           maximumFractionDigits: 2,
