@@ -33,7 +33,7 @@ export default function FirstStep({
   useEffect(() => {
     if (!startDate || !endDate) return;
     setSenority(calcularAntiguedad(startDate, endDate, 365));          
-    setWorkedDays(calcularAntiguedad(startDate, endDate, 1)+ 1);                  
+    setWorkedDays(calcularAntiguedad(startDate, endDate, 1));                  
     setDiasTrabajadosVacaciones(diasTrabajadosVacaciones(startDate, endDate) > 1 ? diasTrabajadosVacaciones(startDate, endDate) : 0);
   }, [startDate, endDate]);
   return (

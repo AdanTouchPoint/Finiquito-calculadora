@@ -12,6 +12,7 @@ export function calcularAntiguedad(
   // Convertir las fechas de string a objetos Date
   const startDateObj = new Date(startDate);
   const endDateObj = new Date(endDate);
+  endDateObj.setDate(endDateObj.getDate() + 1);
 
   // Validar que las fechas sean válidas
   if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
