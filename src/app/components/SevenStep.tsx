@@ -21,6 +21,9 @@ interface SevenStepProps {
   proporcionVacationDays?: number;
   proporcionVacationBonusDays?: number;
   proporcionAguinaldoDays?: number;
+  senorityProportion?: number;
+  totalSalaryDebt?: number;
+  salaryDebt?: number;
 }
 export default function SevenStep({
   vacationsBonus,
@@ -36,8 +39,10 @@ export default function SevenStep({
   supBonusSelect,
   proporcionVacationDays,
   proporcionVacationBonusDays,
-  proporcionAguinaldoDays
-
+  proporcionAguinaldoDays,
+  senorityProportion,
+  totalSalaryDebt,
+  salaryDebt,
 }: SevenStepProps) {
   const [bonusVacationSenority, setBonusVacationSenority] = useState(0);
   const [vacationsTotal, setVacationsTotal] = useState(0);
@@ -73,12 +78,7 @@ export default function SevenStep({
     vacationsBonusTotal: number,
     senorityBonus: number
   ) => {
-    return (
-      aguinaldo +
-      vacationsTotal +
-      vacationsBonusTotal +
-      senorityBonus
-    );
+    return aguinaldo + vacationsTotal + vacationsBonusTotal + senorityBonus;
   };
   const handleDownloadPDF = async () => {
     if (!contentRef.current) return;
@@ -204,8 +204,7 @@ export default function SevenStep({
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Pagos pendientes
             </h3>
-            <div  className="grid grid-cols-1 md:grid-cols-2 gap-2">
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <label className="font-medium text-gray-700 text-xs">
                 Días de vacaciones pendientes de pago:
               </label>
@@ -245,90 +244,155 @@ export default function SevenStep({
                 className="mt-1 border-t border-gray-500 pt-4"
               ></div>
               {/* Desgloses adicionales */}
-<div className="space-y-2">
-   <span className="font-bold text-gray-700 text-xs w-1/3">Desglose de pagos de finiquito:</span>
-    <div className="flex justify-between items-center mb-1">
-      <span className="font-medium text-gray-700 text-xs w-1/3"></span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">Proporcion de dias trabajados</span>
-      <span className="text-gray-700 text-xs text-center w-1/3"></span>
-    </div>
-  <div className="w-full">
-    <div className="flex justify-between items-center mb-1">
-      <span className="font-medium text-gray-700 text-xs w-1/3">Aguinaldo:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{proporcionAguinaldoDays?.toFixed(2)}</span>
-      <span className="text-black font-bold text-right w-1/3">
-        {aguinaldo?.toLocaleString("en-US", {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2,
-        }) || "0.00"}
-      </span>
-    </div>
-    
-    <div className="flex justify-between items-center mb-1">
-      <span className="font-medium text-gray-700 text-xs w-1/3">Vacaciones Pendientes:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{vacationsDaysDebt.toFixed(2)}</span>
-      <span className="text-black font-bold text-right w-1/3">
-        {vacationDebt?.toLocaleString("en-US", {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2
-        }) || "0.00"}
-      </span>
-    </div>
-    
-    <div className="flex justify-between items-center mb-1">
-      <span className="font-medium text-gray-700 text-xs w-1/3">Vacaciones Finiquito:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{proporcionVacationDays?.toFixed(2)}</span>
-      <span className="text-black font-bold text-right w-1/3">
-        {vacationsPolitics?.toLocaleString("en-US", {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2
-        }) || "0.00"}
-      </span>
-    </div>
-    
-   
-    <div className="flex justify-between items-center mb-1">
-      <span className="font-medium text-gray-700 text-xs w-1/3">Prima vacacional:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3 font-bold">{proporcionVacationBonusDays?.toFixed(2)}</span>
-      <span className="text-black font-bold text-right w-1/3">
-        {vacationsBonus?.toLocaleString("en-US", {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2
-        }) || "0.00"}
-      </span>
-    </div>
-    
-   
-    <div className="flex justify-between items-center mb-1">
-      <span className="font-medium text-gray-700 text-xs w-1/3">Prima de antigüedad:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3"></span>
-      <span className="text-black font-bold text-right w-1/3">
-        {senorityBonus?.toLocaleString("en-US", {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2
-        }) || "0.00"}
-      </span>
-    </div>
-    
-  
-    <div className="flex justify-between items-center pt-2 border-t border-gray-300 mt-2">
-      <span className="font-bold text-gray-700 text-xs w-1/3">TOTAL:</span>
-      <span className="text-gray-700 text-xs text-center w-1/3"></span>
-      <span className="text-black font-bold text-right w-1/3">
-        {(
-          (aguinaldo || 0) +
-          (vacationDebt || 0) +
-          (vacationsPolitics || 0) +
-          (vacationsBonus || 0) +
-          (senorityBonus || 0)
-        )?.toLocaleString("en-US", {
-          maximumFractionDigits: 2,
-          minimumFractionDigits: 2
-        })}
-      </span>
-    </div>
-  </div>
-</div>
+              <div className="space-y-2">
+                <span className="font-bold text-gray-700 text-xs w-1/3">
+                  Desglose de pagos de finiquito:
+                </span>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-medium text-gray-700 text-xs w-1/3"></span>
+                  <span className="text-gray-700 text-xs text-left w-8/10 font-bold">
+                    Proporción de días trabajados
+                  </span>
+                  <span className="text-gray-700 text-xs text-left w-1/3"></span>
+                </div>
+                <div className="w-full">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                      Sueldo:
+                    </span>
+                    <div className="w-1/3 flex justify-left">
+                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
+                        {salaryDebt?.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold">
+                        {totalSalaryDebt?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        }) || "0.00"}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                      Aguinaldo:
+                    </span>
+                    <div className="w-1/3 flex justify-left">
+                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
+                        {proporcionAguinaldoDays?.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold">
+                        {aguinaldo?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        }) || "0.00"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                      Vacaciones Pendientes:
+                    </span>
+                    <div className="w-1/3 flex justify-left">
+                      {" "}
+                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
+                        {vacationsDaysDebt.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold text-right w-1/3">
+                        {vacationDebt?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        }) || "0.00"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                      Vacaciones <br />
+                      Finiquito:
+                    </span>
+                    <div className="w-1/3 flex justify-left">
+                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
+                        {proporcionVacationDays?.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold text-right w-1/3">
+                        {vacationsPolitics?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        }) || "0.00"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                      Prima <br /> vacacional:
+                    </span>
+                    <div className="w-1/3 flex justify-left">
+                      <span className="text-gray-700 text-xs text-left w-8/10 font-bold">
+                        {proporcionVacationBonusDays?.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold text-right w-1/3">
+                        {vacationsBonus?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        }) || "0.00"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                      Prima de antigüedad:
+                    </span>
+                    <div className="w-1/3 flex justify-left">
+                      <span className="text-gray-700 text-xs text-left w-8/10 font-bold">
+                        {senorityProportion?.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold text-right w-1/3">
+                        {senorityBonus?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        }) || "0.00"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-left pt-2 border-t border-gray-300 mt-2">
+                    <span className="font-bold text-gray-700 text-xs w-1/3">
+                      TOTAL:
+                    </span>
+                    <span className="text-gray-700 text-xs text-center w-1/3"></span>
+                    <div className="w-1/3">
+                      <span className="text-black font-bold text-right w-1/3">
+                        {(
+                          (aguinaldo || 0) +
+                          (vacationDebt || 0) +
+                          (vacationsPolitics || 0) +
+                          (vacationsBonus || 0) +
+                          (senorityBonus || 0)
+                        )?.toLocaleString("en-US", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        })}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div>
               <p className="text-gray-700 text-xs mt-6 font-medium">

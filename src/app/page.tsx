@@ -30,6 +30,9 @@ export default function Home() {
   const [supBonusSelect, setSupBonusSelect] = useState(0);
   const [bonusSelect, setBonusSelect] = useState("");
   const [sdi,setSdi] = useState(0);
+  const [senorityProportion,setSenorityProportion] = useState(0);
+  const [totalSalaryDebt, setTotalSalaryDebt] = useState(0);
+  const [salaryDebt, setSalaryDebt] = React.useState(0);
   return (
     <div className="bg-[#F5F6F8]">
       <div className="max-w-[1200px] mx-auto bg-[#F5F6F8]  p-8">
@@ -54,6 +57,9 @@ export default function Home() {
             setSalary={setSalary}
             period={period}
             setPeriod={setPeriod}
+            setTotalSalaryDebt={setTotalSalaryDebt}
+            salaryDebt={salaryDebt}
+            setSalaryDebt={setSalaryDebt}
           />
           <FourthStep
             aguinaldoDays={aguinaldoDays}
@@ -91,6 +97,7 @@ export default function Home() {
             dailyPay={dailyPay}
             setSenorityBonus={setSenorityBonus}
             sdi={sdi}
+            setSenorityProportion={setSenorityProportion}
           />
         </div>
         <SevenStep
@@ -109,6 +116,9 @@ export default function Home() {
           vacationsBonus={vacationsBonus}
           supBonusSelect={supBonusSelect}
           bonusSelect={bonusSelect}
+          senorityProportion={senorityProportion}
+          totalSalaryDebt={totalSalaryDebt}
+          salaryDebt={salaryDebt}
         />
       </div>
     </div>

@@ -5,8 +5,9 @@ interface SixStepProps {
     dailyPay: number;
     setSenorityBonus: React.Dispatch<React.SetStateAction<number>>;
     sdi: number;
+    setSenorityProportion: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function SixStep({senority, dailyPay,setSenorityBonus,sdi}: SixStepProps) {
+export default function SixStep({senority, dailyPay,setSenorityBonus,sdi,setSenorityProportion}: SixStepProps) {
     
     useEffect(() => {
         const receivesSeniorityBonus = (senority: number, sdi: number) => {
@@ -15,10 +16,12 @@ export default function SixStep({senority, dailyPay,setSenorityBonus,sdi}: SixSt
                 const payload =  minimumSalary * 2
                 //const seniorityPayload = Number(senority.toFixed(2))
                 const senorityData = senority * 12
+                setSenorityProportion(senorityData);
                 console.log("Seniority Data: ", senorityData , senority);
                return sdi > payload ? setSenorityBonus(payload *senorityData) : setSenorityBonus(sdi * senorityData);
             } else {
                 setSenorityBonus(0);
+                 setSenorityProportion(0);
                 return false;
             }
         };
