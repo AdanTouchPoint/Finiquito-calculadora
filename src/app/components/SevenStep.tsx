@@ -145,13 +145,13 @@ export default function SevenStep({
         <h2 className="text-2xl font-semibold text-center text-black">
           Detalle de <span className="text-red-500 font-bold">Finiquito</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 ">
+          <div >
             {/* Desglose de pagos de finiquito */}
             <h2 className="text-black text-lg font-semibold mb-3">
               Prestaciones
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center ">
               <label className="font-medium text-gray-700 text-xs mb-2 text-justify">
                 Salario diario:
               </label>
@@ -204,7 +204,7 @@ export default function SevenStep({
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Pagos pendientes
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
               <label className="font-medium text-gray-700 text-xs">
                 Días de vacaciones pendientes de pago:
               </label>
