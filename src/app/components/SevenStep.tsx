@@ -146,7 +146,7 @@ export default function SevenStep({
           Detalle de <span className="text-red-500 font-bold">Finiquito</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 ">
-          <div >
+          <div>
             {/* Desglose de pagos de finiquito */}
             <h2 className="text-black text-lg font-semibold mb-3">
               Prestaciones
@@ -249,126 +249,107 @@ export default function SevenStep({
                   Desglose de pagos de finiquito:
                 </span>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="font-medium text-gray-700 text-xs w-1/3"></span>
-                  <span className="text-gray-700 text-xs text-left w-8/10 font-bold">
+                  <span className="font-medium text-gray-700 text-xs w-1/2"></span>
+                  <span className="text-gray-700 text-xs text-center w-1/6 font-bold">
                     Proporción de días trabajados
                   </span>
-                  <span className="text-gray-700 text-xs text-left w-1/3"></span>
+                  <span className="text-gray-700 text-xs w-1/6"></span>
                 </div>
                 <div className="w-full">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                  <div className="flex justify-between items-center mb-1 py-2">
+                    <span className="w-1/2 font-medium text-left text-gray-700">
                       Sueldo:
                     </span>
-                    <div className="w-1/3 flex justify-left">
-                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
-                        {salaryDebt?.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-1/3">
-                      <span className="text-black font-bold">
-                        {totalSalaryDebt?.toLocaleString("en-US", {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2,
-                        }) || "0.00"}
-                      </span>
-                    </div>
+                    <span className="w-1/7 text-left text-gray-700">
+                      {salaryDebt?.toFixed(2)}
+                    </span>
+                    <span className="w-1/5 text-right text-black font-bold">
+                      {totalSalaryDebt?.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      }) || "0.00"}
+                    </span>
                   </div>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-medium text-gray-700 text-xs w-1/3">
+
+                  <div className="flex justify-between items-center mb-1 py-2">
+                    <span className="w-1/2 font-medium text-gray-700">
                       Aguinaldo:
                     </span>
-                    <div className="w-1/3 flex justify-left">
-                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
-                        {proporcionAguinaldoDays?.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-1/3">
-                      <span className="text-black font-bold">
-                        {aguinaldo?.toLocaleString("en-US", {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2,
-                        }) || "0.00"}
-                      </span>
-                    </div>
-                  </div>
 
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                    <span className="w-1/7 text-right text-gray-700">
+                      {proporcionAguinaldoDays?.toFixed(2)}
+                    </span>
+
+                    <span className="w-1/5 text-right text-black font-bold">
+                      {aguinaldo?.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      }) || "0.00"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center mb-1 py-2">
+                    <span className="w-1/2 font-medium text-gray-700">
                       Vacaciones Pendientes:
                     </span>
-                    <div className="w-1/3 flex justify-left">
-                      {" "}
-                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
-                        {vacationsDaysDebt.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-1/3">
-                      <span className="text-black font-bold text-right w-1/3">
-                        {vacationDebt?.toLocaleString("en-US", {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2,
-                        }) || "0.00"}
-                      </span>
-                    </div>
-                  </div>
 
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-medium text-gray-700 text-xs w-1/3">
-                      Vacaciones <br />
-                      Finiquito:
+                    <span className="w-1/7 text-right text-gray-700">
+                      {vacationsDaysDebt.toFixed(2)}
                     </span>
-                    <div className="w-1/3 flex justify-left">
-                      <span className="text-gray-700 text-xs text-center w-8/10 font-bold">
-                        {proporcionVacationDays?.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-1/3">
-                      <span className="text-black font-bold text-right w-1/3">
-                        {vacationsPolitics?.toLocaleString("en-US", {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2,
-                        }) || "0.00"}
-                      </span>
-                    </div>
-                  </div>
 
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-medium text-gray-700 text-xs w-1/3">
-                      Prima <br /> vacacional:
+                    <span className="w-1/5 text-right text-black font-bold">
+                      {vacationDebt?.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      }) || "0.00"}
                     </span>
-                    <div className="w-1/3 flex justify-left">
-                      <span className="text-gray-700 text-xs text-left w-8/10 font-bold">
-                        {proporcionVacationBonusDays?.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-1/3">
-                      <span className="text-black font-bold text-right w-1/3">
-                        {vacationsBonus?.toLocaleString("en-US", {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2,
-                        }) || "0.00"}
-                      </span>
-                    </div>
                   </div>
+                  <div className="flex justify-between items-center mb-1 py-2">
+                    <span className="w-1/2 font-medium text-gray-700">
+                      Vacaciones Finiquito:
+                    </span>
 
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-medium text-gray-700 text-xs w-1/3">
+                    <span className="w-1/7 text-right text-gray-700">
+                      {vacationsDaysDebt.toFixed(2)}
+                    </span>
+
+                    <span className="w-1/5 text-right text-black font-bold">
+                      {vacationDebt?.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      }) || "0.00"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center mb-1 py-2">
+                    <span className="w-1/2 font-medium text-gray-700">
+                      Prima vacacional:
+                    </span>
+
+                    <span className="w-1/7 text-right text-gray-700">
+                      {proporcionVacationBonusDays?.toFixed(2)}
+                    </span>
+
+                    <span className="w-1/5 text-right text-black font-bold">
+                      {vacationsBonus?.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      }) || "0.00"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center mb-1 py-2">
+                    <span className="w-1/2 font-medium text-gray-700">
                       Prima de antigüedad:
                     </span>
-                    <div className="w-1/3 flex justify-left">
-                      <span className="text-gray-700 text-xs text-left w-8/10 font-bold">
-                        {senorityProportion?.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="w-1/3">
-                      <span className="text-black font-bold text-right w-1/3">
-                        {senorityBonus?.toLocaleString("en-US", {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2,
-                        }) || "0.00"}
-                      </span>
-                    </div>
+
+                    <span className="w-1/7 text-right text-gray-700">
+                      {senorityProportion?.toFixed(2)}
+                    </span>
+
+                    <span className="w-1/5 text-right text-black font-bold">
+                      {senorityBonus?.toLocaleString("en-US", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      }) || "0.00"}
+                    </span>
                   </div>
 
                   <div className="flex justify-between items-left pt-2 border-t border-gray-300 mt-2">
@@ -376,7 +357,7 @@ export default function SevenStep({
                       TOTAL:
                     </span>
                     <span className="text-gray-700 text-xs text-center w-1/3"></span>
-                    <div className="w-1/3">
+                    <div className="w-1/7">
                       <span className="text-black font-bold text-right w-1/3">
                         {(
                           (aguinaldo || 0) +
