@@ -309,11 +309,11 @@ export default function SevenStep({
                     </span>
 
                     <span className="w-1/7 text-right text-gray-700">
-                      {vacationsDaysDebt.toFixed(2)}
+                      {proporcionVacationDays?.toFixed(2)}
                     </span>
 
                     <span className="w-1/5 text-right text-black font-bold">
-                      {vacationDebt?.toLocaleString("en-US", {
+                      {vacationsPolitics?.toLocaleString("en-US", {
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2,
                       }) || "0.00"}
