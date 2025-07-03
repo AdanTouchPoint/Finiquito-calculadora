@@ -6,6 +6,8 @@ import {
   diasTrabajadosVacaciones,
   years,
 } from "../lib/utilities";
+import WarningModal from "./WarningModal";
+
 interface FirstStepProps {
   senority: number;
   setSenority: React.Dispatch<React.SetStateAction<number>>;
@@ -28,7 +30,13 @@ export default function FirstStep({
   setEndDate,
   setDiasTrabajadosVacaciones,
 }: FirstStepProps) {
-  const [dateError, setDateError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    window.location.reload();
+  };
+
   // Obtener los valores de las fechas desde los inputs
   const changeStartDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setStartDate(event.target.value);
@@ -39,13 +47,9 @@ export default function FirstStep({
   useEffect(() => {
     if (!startDate || !endDate) return;
     if (checkValidDate(startDate, endDate) === false) {
-      setSenority(0);
-      setWorkedDays(0);
-      setDiasTrabajadosVacaciones(0);
-      setDateError("La fecha de baja no puede ser anterior a la fecha de ingreso.");
+      setIsModalOpen(true);
       return;
     }
-    setDateError(null);
     setSenority(calcularAntiguedad(startDate, endDate, 365));
     setWorkedDays(calcularAntiguedad(startDate, endDate, 1));
     setDiasTrabajadosVacaciones(
@@ -56,6 +60,11 @@ export default function FirstStep({
   }, [startDate, endDate]);
   return (
     <div className="mb-6">
+      <WarningModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        message="La fecha de baja no puede ser anterior a la fecha de ingreso."
+      />
       <h2 className="text-red-600 text-lg font-bold">Fechas</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -81,7 +90,6 @@ export default function FirstStep({
           />
         </div>
       </div>
-      {dateError && <p className="text-red-500 text-xs mt-1 mb-3">{dateError}</p>}
       <label className="block text-gray-700 font-semibold text-xs">
         Antigüedad
       </label>
