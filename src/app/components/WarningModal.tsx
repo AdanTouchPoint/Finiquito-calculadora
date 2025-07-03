@@ -13,8 +13,8 @@ export default function WarningModal({ isOpen, onClose, message }: WarningModalP
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-start ">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center mt-20">
         <h3 className="text-lg font-bold text-red-600 mb-4">Advertencia</h3>
         <p className="text-gray-700 mb-6">{message}</p>
         <button
