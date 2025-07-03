@@ -1,6 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import { calcularAntiguedad,diasTrabajadosVacaciones,years } from "../lib/utilities";
+import React, { useEffect, useState } from "react";
+import {
+  calcularAntiguedad,
+  checkValidDate,
+  diasTrabajadosVacaciones,
+  years,
+} from "../lib/utilities";
 interface FirstStepProps {
   senority: number;
   setSenority: React.Dispatch<React.SetStateAction<number>>;
@@ -21,8 +26,9 @@ export default function FirstStep({
   endDate,
   setStartDate,
   setEndDate,
-  setDiasTrabajadosVacaciones
+  setDiasTrabajadosVacaciones,
 }: FirstStepProps) {
+  const [dateError, setDateError] = useState<string | null>(null);
   // Obtener los valores de las fechas desde los inputs
   const changeStartDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setStartDate(event.target.value);
@@ -32,9 +38,21 @@ export default function FirstStep({
   };
   useEffect(() => {
     if (!startDate || !endDate) return;
-    setSenority(calcularAntiguedad(startDate, endDate, 365));          
-    setWorkedDays(calcularAntiguedad(startDate, endDate, 1));                  
-    setDiasTrabajadosVacaciones(diasTrabajadosVacaciones(startDate, endDate) > 1 ? diasTrabajadosVacaciones(startDate, endDate) : 0);
+    if (checkValidDate(startDate, endDate) === false) {
+      setSenority(0);
+      setWorkedDays(0);
+      setDiasTrabajadosVacaciones(0);
+      setDateError("La fecha de baja no puede ser anterior a la fecha de ingreso.");
+      return;
+    }
+    setDateError(null);
+    setSenority(calcularAntiguedad(startDate, endDate, 365));
+    setWorkedDays(calcularAntiguedad(startDate, endDate, 1));
+    setDiasTrabajadosVacaciones(
+      diasTrabajadosVacaciones(startDate, endDate) > 1
+        ? diasTrabajadosVacaciones(startDate, endDate)
+        : 0
+    );
   }, [startDate, endDate]);
   return (
     <div className="mb-6">
@@ -42,7 +60,7 @@ export default function FirstStep({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="text-gray-700 text-xs mb-2 font-semibold">
-          Fecha de ingreso (DD-MM-AA)
+            Fecha de ingreso (DD-MM-AA)
           </label>
           <input
             onChange={changeStartDate}
@@ -53,7 +71,7 @@ export default function FirstStep({
         </div>
         <div>
           <label className="text-xs font-semibold text-gray-700 mb-2">
-          Fecha de baja (DD-MM-AA)
+            Fecha de baja (DD-MM-AA)
           </label>
           <input
             onChange={changeEndDate}
@@ -63,14 +81,15 @@ export default function FirstStep({
           />
         </div>
       </div>
+      {dateError && <p className="text-red-500 text-xs mt-1 mb-3">{dateError}</p>}
       <label className="block text-gray-700 font-semibold text-xs">
-          Antigüedad
-        </label>
-        <input
+        Antigüedad
+      </label>
+      <input
         readOnly
-        value={senority.toFixed(2) +  years(senority)}
+        value={senority.toFixed(2) + years(senority)}
         className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
-        />
+      />
     </div>
   );
 }

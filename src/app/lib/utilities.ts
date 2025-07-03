@@ -93,6 +93,24 @@ const useAniversaryDate = normalizedEndDate > normalizedCurrentAniversary ? norm
   return days + 1;
 
 }
+export function checkValidDate(startDate : string, endDate: string): boolean {
+  // Verificar que ambas fechas estén seleccionadas
+  if (!startDate || !endDate) {
+    return false; // Salir de la función si falta alguna fecha
+  }
+
+  // Convertir las fechas de string a objetos Date
+  const startDateObj = new Date(startDate);
+  const endDateObj = new Date(endDate);
+
+  // Validar que las fechas sean válidas
+  if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
+    return false;
+  }
+
+  // Verificar que la fecha de inicio sea anterior a la fecha de fin
+  return startDateObj < endDateObj;
+}
 export function years(senority: number) {
   if (senority < 1 || senority >= 2) return " años";
   return " año";
@@ -107,7 +125,7 @@ export function calcularProporcionAguinaldo(
 }
 
 export function calcularProporcionVacaciones(seniority: number) {
-  if (seniority >= 0 && seniority <= 1) return 12;
+  if (seniority > 0 && seniority <= 1) return 12;
   if (seniority > 1 && seniority <= 2) return 14;
   if (seniority > 2 && seniority <= 3) return 16;
   if (seniority > 3 && seniority <= 4) return 18;

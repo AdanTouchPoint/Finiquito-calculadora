@@ -235,8 +235,10 @@ export default function SevenStep({
                     vacationsTotal,
                     vacationsBonusTotal,
                     senorityBonus
-                  ).toLocaleString("en-US", { minimumFractionDigits: 2 }) ||
-                    "0.00"}
+                  ).toLocaleString("en-US", {   
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  }) || "0.00"}
                 </div>
               </div>
               <div
