@@ -63,9 +63,10 @@ export default function FirstStep({
       <WarningModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        message="La fecha de baja no puede ser anterior a la fecha de ingreso."
+        message=" La fecha de baja debe ser posterior a la fecha de ingreso. Seleccionala en el calendario."
       />
       <h2 className="text-red-600 text-lg font-bold">Fechas</h2>
+      <p className="text-xs text-gray-400 mb-2 mt-2">Haz clic en el icono para desplegar el calendario y elegir fechas de ingreso y de baja.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="text-gray-700 text-xs mb-2 font-semibold">
