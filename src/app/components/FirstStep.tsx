@@ -42,12 +42,15 @@ export default function FirstStep({
     setStartDate(event.target.value);
   };
   const changeEndDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value[0] === "0") {
+      return
+    }
     setEndDate(event.target.value);
   };
   useEffect(() => {
     if (!startDate || !endDate) return;
     if (checkValidDate(startDate, endDate) === false) {
-      setIsModalOpen(true);
+        setIsModalOpen(true);
       return;
     }
     setSenority(calcularAntiguedad(startDate, endDate, 365));
@@ -63,7 +66,7 @@ export default function FirstStep({
       <WarningModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        message=" La fecha de baja debe ser posterior a la fecha de ingreso. Seleccionala en el calendario."
+        message=" La fecha de baja debe ser posterior a la fecha de ingreso. Selecciónala en el calendario."
       />
       <h2 className="text-red-600 text-lg font-bold">Fechas</h2>
       <p className="text-xs text-gray-400 mb-2 mt-2">Haz clic en el icono para desplegar el calendario y elegir fechas de ingreso y de baja.</p>
@@ -73,6 +76,7 @@ export default function FirstStep({
             Fecha de ingreso (DD-MM-AA)
           </label>
           <input
+
             onChange={changeStartDate}
             type="date"
             className="w-full border border-gray-300 rounded-lg p-2 mb-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none text-[#848484]"
