@@ -49,7 +49,7 @@ export default function SevenStep({
   const [vacationsBonusTotal, setVacationsBonusTotal] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const templateRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     if (bonusSelect === "") return;
     if (bonusSelect === "ley")
@@ -80,64 +80,122 @@ export default function SevenStep({
   ) => {
     return aguinaldo + vacationsTotal + vacationsBonusTotal + senorityBonus;
   };
-  const handleDownloadPDF = async () => {
-    if (!contentRef.current) return;
-    if (!templateRef.current) return;
-    setIsGenerating(true);
-    try {
-      const element = contentRef.current;
-      const optimalScale = window.devicePixelRatio * 2; // Limitar escala máxima
-      const canvas = await html2canvas(element, {
-        logging: true,
-        //scale: optimalScale,
-      });
-      const imgData = canvas.toDataURL("image/png");
+const handleDownloadPDF = async () => {
+  if (!contentRef.current) {
+    console.error("Content reference not found for PDF generation.");
+    return;
+  }
+  setIsGenerating(true);
 
-      const screenshotImg = templateRef?.current.querySelector(
-        "#screenshot-img"
-      ) as HTMLImageElement;
-      if (screenshotImg) {
-        screenshotImg.src = imgData;
-        // Espera a que la imagen cargue
-        await new Promise((resolve) => {
-          screenshotImg.onload = resolve;
-        });
-      }
-      // 3. Captura la plantilla completa
+  try {
+    const element = contentRef.current;
 
-      const templateCanvas = await html2canvas(templateRef.current, {
-        useCORS: true, // Necesario para imágenes externas
-        scale: optimalScale,
-        logging: true,
-      });
-      const pdf = new jsPDF({
-        orientation: element.offsetWidth > element.offsetHeight ? "l" : "p",
-        unit: "px",
-        format: [
-          element.offsetWidth * optimalScale,
-          element.offsetHeight * optimalScale,
-        ],
-        compress: true, // Activar compresión PDF
-      });
+    // Use a higher scale for better resolution, and allow for a slight delay
+    // to ensure all content is rendered before capturing.
+    const originalCanvas = await html2canvas(element, {
+      scale: 3, // Increased scale for better quality
+      useCORS: true,
+      scrollY: -window.scrollY, // Correctly capture visible area
+      windowWidth: element.scrollWidth,
+      // You might want to consider a short delay here if dynamic content
+      // loads after the initial render, e.g., onRendering: (canvas) => { /* some delay */ }
+    });
 
-      pdf.addImage(
-        templateCanvas,
-        "PNG",
-        0,
-        0,
-        element.offsetWidth * optimalScale,
-        element.offsetHeight * optimalScale,
-        undefined,
-        "FAST"
-      );
+    // Calculate padding dynamically based on content height or a fixed value
+    // A fixed padding might still be needed for consistent bottom margin
+    const paddingBottomPx = 50; // Reduced padding, adjust as needed
+    const extendedCanvas = document.createElement("canvas");
+    extendedCanvas.width = originalCanvas.width;
+    extendedCanvas.height = originalCanvas.height + paddingBottomPx;
 
-      pdf.save("resultados.pdf");
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    } finally {
-      setIsGenerating(false);
+    const ctx = extendedCanvas.getContext("2d");
+    if (ctx) { // Ensure context is not null
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(0, 0, extendedCanvas.width, extendedCanvas.height);
+      ctx.drawImage(originalCanvas, 0, 0);
     }
-  };
+
+    const imgData = extendedCanvas.toDataURL("image/jpeg", 0.95); // Higher quality JPEG
+
+    // Load the logo securely and efficiently
+    let logoData: string | ArrayBuffer | null = null;
+    try {
+      const response = await fetch("/logosolu.png");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const blob = await response.blob();
+      logoData = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    } catch (logoError) {
+      console.error("Error loading logo:", logoError);
+      // Optionally, proceed without the logo or use a placeholder
+    }
+
+    const pdf = new jsPDF("p", "mm", "a4", true);
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const logoHeight = 20;
+    const logoWidth = 30; // Assuming logoWidth is 30 based on your original code
+    const topMargin = logoHeight + 10;
+    const imgPadding = 10; // Padding for the image within the page
+
+    // Calculate image dimensions to fit the page with padding, maintaining aspect ratio
+    const imgAspectRatio = extendedCanvas.width / extendedCanvas.height;
+    let imgWidth = pageWidth - 2 * imgPadding;
+    let imgHeight = imgWidth / imgAspectRatio;
+
+    // If the calculated height exceeds the usable page height, scale down
+    const usablePageHeight = pageHeight - topMargin - imgPadding; // Account for top margin and bottom padding
+    if (imgHeight > usablePageHeight) {
+      imgHeight = usablePageHeight;
+      imgWidth = imgHeight * imgAspectRatio;
+    }
+
+    const marginX = (pageWidth - imgWidth) / 2;
+    const position = topMargin;
+
+    // Add content to PDF, handling multiple pages
+    const currentImgHeight = imgHeight;
+    let pageAdded = false;
+
+    // First page
+    if (logoData && typeof logoData === "string") {
+      pdf.addImage(logoData, "PNG", 10, 10, logoWidth, logoHeight);
+    }
+    pdf.addImage(imgData, "JPEG", marginX, position, imgWidth, currentImgHeight);
+
+    // Remaining pages
+    let heightLeft = imgHeight - (pageHeight - position);
+    while (heightLeft > 0) {
+      pdf.addPage();
+      pageAdded = true; // Mark that a new page was added
+      console.log(pageAdded)
+      if (logoData && typeof logoData === "string") {
+        pdf.addImage(logoData, "PNG", 10, 10, logoWidth, logoHeight);
+      }
+      const newPosition = topMargin - (imgHeight - heightLeft); // Adjust position for the new page
+      pdf.addImage(imgData, "JPEG", marginX, newPosition, imgWidth, currentImgHeight);
+      heightLeft -= (pageHeight - topMargin); // Reduce heightLeft by the usable page height
+    }
+    
+    // Set a more descriptive filename
+    pdf.save("detalle_finiquito.pdf");
+
+  } catch (error) {
+    console.error("Error generating PDF:", error);
+    alert("Hubo un error al generar el PDF. Por favor, inténtalo de nuevo.");
+  } finally {
+    setIsGenerating(false);
+  }
+};
+
+
+
 
   return (
     <div>
@@ -411,32 +469,7 @@ export default function SevenStep({
           </div>
         </div>
       </div>
-      <div
-        ref={templateRef}
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          width: "800px",
-          height: "600px",
-          background: "white",
-        }}
-      >
-        <img
-          id="screenshot-img"
-          alt="Captura"
-          style={{ padding: 20, width: "100%", height: "auto" }}
-        />
-        <img
-          src="/logosolu.png" // Coloca tu logo en /public/logo.png
-          alt="Logo"
-          style={{
-            position: "absolute",
-            top: 20,
-            left: 20,
-            width: 150,
-          }}
-        />
-      </div>
+      
     </div>
   );
 }
