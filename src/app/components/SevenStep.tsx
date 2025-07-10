@@ -121,7 +121,7 @@ const handleDownloadPDF = async () => {
     const pageWidth = pdf.internal.pageSize.getWidth(); // Ancho de la página en mm
     const pageHeight = pdf.internal.pageSize.getHeight(); // Alto de la página en mm
     const logoHeight = 20; // Altura del logo en mm
-    const logoWidth = 30; // Ancho del logo en mm
+    const logoWidth = 50; // Ancho del logo en mm
     const topMargin = logoHeight + 10; // Margen superior para el logo y espacio
     const bottomMargin = 35; // Margen inferior
     const imgHorizontalPadding = 10; // Relleno horizontal para la imagen dentro de la página
