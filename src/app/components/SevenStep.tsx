@@ -90,34 +90,15 @@ const handleDownloadPDF = async () => {
   try {
     const element = contentRef.current;
 
-    // Use a higher scale for better resolution, and allow for a slight delay
-    // to ensure all content is rendered before capturing.
+    // Aumentamos la escala para una mejor resolución general.
     const originalCanvas = await html2canvas(element, {
-      scale: 3, // Increased scale for better quality
+      scale: 2, // Se puede ajustar a 4 si la calidad es crítica y el rendimiento lo permite.
       useCORS: true,
-      scrollY: -window.scrollY, // Correctly capture visible area
+      scrollY: -window.scrollY,
       windowWidth: element.scrollWidth,
-      // You might want to consider a short delay here if dynamic content
-      // loads after the initial render, e.g., onRendering: (canvas) => { /* some delay */ }
     });
 
-    // Calculate padding dynamically based on content height or a fixed value
-    // A fixed padding might still be needed for consistent bottom margin
-    const paddingBottomPx = 50; // Reduced padding, adjust as needed
-    const extendedCanvas = document.createElement("canvas");
-    extendedCanvas.width = originalCanvas.width;
-    extendedCanvas.height = originalCanvas.height + paddingBottomPx;
-
-    const ctx = extendedCanvas.getContext("2d");
-    if (ctx) { // Ensure context is not null
-      ctx.fillStyle = "#FFFFFF";
-      ctx.fillRect(0, 0, extendedCanvas.width, extendedCanvas.height);
-      ctx.drawImage(originalCanvas, 0, 0);
-    }
-
-    const imgData = extendedCanvas.toDataURL("image/jpeg", 0.95); // Higher quality JPEG
-
-    // Load the logo securely and efficiently
+    // Cargar el logo de forma segura
     let logoData: string | ArrayBuffer | null = null;
     try {
       const response = await fetch("/logosolu.png");
@@ -132,62 +113,75 @@ const handleDownloadPDF = async () => {
         reader.readAsDataURL(blob);
       });
     } catch (logoError) {
-      console.error("Error loading logo:", logoError);
-      // Optionally, proceed without the logo or use a placeholder
+      console.error("Error al cargar el logo:", logoError);
+      // Podemos decidir si el PDF se genera sin logo o si se detiene aquí.
     }
 
     const pdf = new jsPDF("p", "mm", "a4", true);
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-    const logoHeight = 20;
-    const logoWidth = 30; // Assuming logoWidth is 30 based on your original code
-    const topMargin = logoHeight + 10;
-    const imgPadding = 10; // Padding for the image within the page
+    const pageWidth = pdf.internal.pageSize.getWidth(); // Ancho de la página en mm
+    const pageHeight = pdf.internal.pageSize.getHeight(); // Alto de la página en mm
+    const logoHeight = 20; // Altura del logo en mm
+    const logoWidth = 30; // Ancho del logo en mm
+    const topMargin = logoHeight + 10; // Margen superior para el logo y espacio
+    const bottomMargin = 35; // Margen inferior
+    const imgHorizontalPadding = 10; // Relleno horizontal para la imagen dentro de la página
+    const usablePageHeight = pageHeight - topMargin - bottomMargin; // Altura utilizable para el contenido
 
-    // Calculate image dimensions to fit the page with padding, maintaining aspect ratio
-    const imgAspectRatio = extendedCanvas.width / extendedCanvas.height;
-    let imgWidth = pageWidth - 2 * imgPadding;
-    let imgHeight = imgWidth / imgAspectRatio;
+    // Calcula la relación de aspecto del canvas original
+    const canvasAspectRatio = originalCanvas.width / originalCanvas.height;
 
-    // If the calculated height exceeds the usable page height, scale down
-    const usablePageHeight = pageHeight - topMargin - imgPadding; // Account for top margin and bottom padding
-    if (imgHeight > usablePageHeight) {
-      imgHeight = usablePageHeight;
-      imgWidth = imgHeight * imgAspectRatio;
-    }
+    // Determina el ancho de la imagen en el PDF para que ocupe el ancho de la página menos el padding
+    const imgPdfWidth = pageWidth - 2 * imgHorizontalPadding;
+    // Calcula la altura correspondiente en el PDF para mantener la relación de aspecto
+    const imgPdfHeight = imgPdfWidth / canvasAspectRatio;
+    console.log( imgPdfHeight);
+    // Calcula cuántas "páginas" virtuales del canvas original necesitamos
+    // para cubrir toda la altura del contenido capturado.
+    const totalPagesNeeded = Math.ceil(originalCanvas.height / (originalCanvas.width / imgPdfWidth * usablePageHeight));
 
-    const marginX = (pageWidth - imgWidth) / 2;
-    const position = topMargin;
+    for (let i = 0; i < totalPagesNeeded; i++) {
+      if (i > 0) {
+        pdf.addPage(); // Añade una nueva página si no es la primera
+      }
 
-    // Add content to PDF, handling multiple pages
-    const currentImgHeight = imgHeight;
-    let pageAdded = false;
-
-    // First page
-    if (logoData && typeof logoData === "string") {
-      pdf.addImage(logoData, "PNG", 10, 10, logoWidth, logoHeight);
-    }
-    pdf.addImage(imgData, "JPEG", marginX, position, imgWidth, currentImgHeight);
-
-    // Remaining pages
-    let heightLeft = imgHeight - (pageHeight - position);
-    while (heightLeft > 0) {
-      pdf.addPage();
-      pageAdded = true; // Mark that a new page was added
-      console.log(pageAdded)
-      if (logoData && typeof logoData === "string") {
+      // Añadir logo a cada página
+      if (typeof logoData === "string") {
         pdf.addImage(logoData, "PNG", 10, 10, logoWidth, logoHeight);
       }
-      const newPosition = topMargin - (imgHeight - heightLeft); // Adjust position for the new page
-      pdf.addImage(imgData, "JPEG", marginX, newPosition, imgWidth, currentImgHeight);
-      heightLeft -= (pageHeight - topMargin); // Reduce heightLeft by the usable page height
+
+      // Calcula la posición de recorte en el canvas original (en píxeles)
+      // Multiplicamos por la relación de escala de la imagen en el PDF vs el canvas original
+      const cropY = i * (originalCanvas.width / imgPdfWidth * usablePageHeight);
+
+      // Crea un canvas temporal para la sección de la página actual
+      const pageCanvas = document.createElement('canvas');
+      pageCanvas.width = originalCanvas.width; // Mismo ancho que el original
+      pageCanvas.height = Math.min(originalCanvas.height - cropY, (originalCanvas.width / imgPdfWidth) * usablePageHeight); // Altura de la sección actual
+
+      const pageCtx = pageCanvas.getContext('2d');
+      if (pageCtx) {
+        // Dibuja la sección del canvas original en el canvas temporal
+        // Los últimos 4 parámetros son el 'sx', 'sy', 'sWidth', 'sHeight' (origen en el canvas original)
+        // y los primeros 4 son el 'dx', 'dy', 'dWidth', 'dHeight' (destino en el canvas temporal)
+        pageCtx.drawImage(
+          originalCanvas,
+          0, cropY, // Punto de inicio del recorte en el original (x, y)
+          originalCanvas.width, pageCanvas.height, // Dimensiones del recorte en el original (width, height)
+          0, 0, // Punto de destino en el canvas temporal (x, y)
+          pageCanvas.width, pageCanvas.height // Dimensiones en el canvas temporal (width, height)
+        );
+      }
+
+      // Convertir el canvas de la página a una imagen y añadir al PDF
+      const pageImgData = pageCanvas.toDataURL("image/jpeg", 0.95);
+      pdf.addImage(pageImgData, "JPEG", imgHorizontalPadding, topMargin, imgPdfWidth, pageCanvas.height * (imgPdfWidth / pageCanvas.width));
     }
-    
+
     // Set a more descriptive filename
     pdf.save("detalle_finiquito.pdf");
 
   } catch (error) {
-    console.error("Error generating PDF:", error);
+    console.error("Error al generar el PDF:", error);
     alert("Hubo un error al generar el PDF. Por favor, inténtalo de nuevo.");
   } finally {
     setIsGenerating(false);
